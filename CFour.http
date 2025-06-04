@@ -1,0 +1,6 @@
+@CFour_HostAddress = http://localhost:5232
+
+GET {{CFour_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
