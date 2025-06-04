@@ -9,7 +9,7 @@ namespace CFour.Entities.User;
 /// user information including personal details and metadata
 /// regarding the user's account creation and modification.
 /// </summary>
-public sealed class User : IAuditedEntity
+public sealed class User : BaseAuditedEntity
 {
     /// <summary>
     /// Gets or sets the first name of the user.

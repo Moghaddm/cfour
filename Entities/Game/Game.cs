@@ -1,4 +1,5 @@
-﻿using CFour.Entities.System;
+﻿using CFour.Entities.Base;
+using CFour.Entities.System;
 using CFour.Enums.Game;
 
 namespace CFour.Entities.Game;
@@ -6,7 +7,7 @@ namespace CFour.Entities.Game;
 /// <summary>
 /// Represents a game with properties describing its details, media, and availability.
 /// </summary>
-public sealed class Game
+public sealed class Game : ActiveBasedEntity
 {
     /// <summary>
     /// Gets or sets the title of the game.
