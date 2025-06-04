@@ -1,42 +1,47 @@
 ﻿using CFour.Base.Interfaces;
+using CFour.Constants;
 using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public class Repository<TId, TEntity> : IRepository<TId, TEntity>
+/// <inheritdoc cref="IRepository{TId,TEntity}"/>
+public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId, TEntity>
+    where TEntity : IBaseEntity<TId>
 {
-    public string CollectionName { get; init; } = "";
-    private IMongoCollection<TEntity> _collection;
+    private readonly IMongoCollection<TEntity> _collection =
+        database.GetCollection<TEntity>(DocumentConstants.UserCollectionName);
 
-    public Repository(IMongoDatabase database)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.InsertOneAsync"/>
+    public async Task InsertOneAsync(TEntity document, CancellationToken cancellationToken)
     {
-        _collection = database.GetCollection<TEntity>(CollectionName);
+        await _collection.InsertOneAsync(document, cancellationToken: cancellationToken);
     }
 
-    public async Task<TId> InsertOneAsync(TEntity document, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.DeleteOneAsync"/>
+    public async Task DeleteOneAsync(TId id, CancellationToken cancellationToken)
     {
-        await _collection.InsertOneAsync(document, cancellationToken);
-
-        return default;
+        var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
+        await _collection.DeleteOneAsync(filter: filter, cancellationToken: cancellationToken);
     }
 
-    public Task DeleteOneAsync(TId id, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.UpdateOneAsync"/>
+    public async Task UpdateOneAsync(TId id, TEntity newEntity, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
+        await _collection.ReplaceOneAsync(filter: filter, replacement: newEntity, cancellationToken: cancellationToken);
     }
 
-    public Task UpdateOneAsync(TId id, TEntity newEntity, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.GetOneAsync"/>
+    public async Task<TEntity> GetOneAsync(TId id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
+        var document = await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+        return document;
     }
 
-    public Task<TEntity> GetOneAsync(TId id, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.GetQueryable"/>
+    public IQueryable<TEntity> GetQueryable()
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<IList<TEntity>> GetQueryableAsync()
-    {
-        throw new NotImplementedException();
+        return _collection.AsQueryable();
     }
 }

@@ -7,15 +7,13 @@
 /// <typeparam name="TEntity"></typeparam>
 public interface IRepository<TId, TEntity>
 {
-    string CollectionName { get; init; }
-
     /// <summary>
-    /// 
+    /// Asynchronously inserts a single document into the collection.
     /// </summary>
-    /// <param name="document"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    Task<TId> InsertOneAsync( TEntity document, CancellationToken cancellationToken);
+    /// <param name="document">The document to be inserted into the collection.</param>
+    /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous insert operation.</returns>
+    Task InsertOneAsync(TEntity document, CancellationToken cancellationToken);
 
     /// <summary>
     /// 
@@ -46,5 +44,5 @@ public interface IRepository<TId, TEntity>
     /// 
     /// </summary>
     /// <returns></returns>
-    Task<IList<TEntity>> GetQueryableAsync();
+    IQueryable<TEntity> GetQueryable();
 }

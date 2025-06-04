@@ -1,7 +1,6 @@
 ﻿using CFour.Entities.Game;
+using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public class GameRepository : IGameRepository
-{
-}
+public sealed class GameRepository(IMongoDatabase database) : Repository<long, Game>(database), IGameRepository;

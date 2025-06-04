@@ -1,25 +1,33 @@
-﻿using CFour.Database.Settings;
+﻿using CFour.Database.Repositories;
+using CFour.Database.Settings;
+using CFour.Entities.Game;
+using CFour.Entities.User;
 using MongoDB.Driver;
 
 namespace CFour.Extensions;
 
-public static class DatabaseExtensions
+internal static class DatabaseExtensions
 {
-    /// <summary>
-    /// Configures the database services for the application by setting up MongoDB client and database instances.
-    /// </summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the database services to.</param>
-    /// <param name="configuration">The application's configuration manager to retrieve database connection settings.</param>
-    public static void ConfigureDatabase(this IServiceCollection services, IConfigurationManager configuration)
+    internal static void ConfigureDatabase(this IServiceCollection services, IConfigurationManager configuration)
+    {
+        services.SetupMongoDbClient(configuration);
+        services.ConfigureRepositories();
+    }
+
+    private static void SetupMongoDbClient(this IServiceCollection services, IConfigurationManager configuration)
     {
         var mongoDbSettings = configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>()!;
-
         services.AddSingleton<IMongoClient>(_ => new MongoClient(mongoDbSettings.ConnectionString));
-
         services.AddScoped(serviceProvider =>
         {
             var client = serviceProvider.GetRequiredService<IMongoClient>();
             return client.GetDatabase(mongoDbSettings.DatabaseName);
         });
+    }
+
+    private static void ConfigureRepositories(this IServiceCollection services)
+    {
+        services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IGameRepository, GameRepository>();
     }
 }

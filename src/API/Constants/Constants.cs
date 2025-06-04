@@ -3,7 +3,7 @@
 /// <summary>
 /// A static class containing constant values used throughout the project.
 /// </summary>
-public static class Constants
+internal static class Constants
 {
-    public const string ApiDocumentationTitle = "CFour - Back-End APIs";
+    internal const string ApiDocumentationTitle = "CFour - Back-End APIs";
 }
