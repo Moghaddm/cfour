@@ -1,4 +1,4 @@
-﻿namespace CFour.Entities.Base.Interfaces;
+﻿namespace CFour.Base.Interfaces;
 
 public interface IAuditedEntity<TId> : IRemovableEntity<TId>
 {

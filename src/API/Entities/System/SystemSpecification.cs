@@ -7,6 +7,12 @@
 public sealed class SystemSpecification
 {
     /// <summary>
+    /// Gets or sets the globally unique identifier (GUID) for identifying the system's specification instance.
+    /// This identifier ensures the uniqueness of each system specification object within a given context.
+    /// </summary>
+    public Guid Unique { get; set; }
+
+    /// <summary>
     /// Gets or sets the information about the system's central processing unit (CPU).
     /// This includes details such as the CPU's name, core and thread count, architecture,
     /// base clock speed, and maximum clock speed.

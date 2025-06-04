@@ -1,4 +1,4 @@
-﻿using CFour.Entities.Base;
+﻿using CFour.Base;
 using CFour.Entities.System;
 
 namespace CFour.Entities.User;

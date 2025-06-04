@@ -1,4 +1,4 @@
-﻿using CFour.Entities.Base;
+﻿using CFour.Base;
 
 namespace CFour.Entities.Attachment;
 

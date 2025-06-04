@@ -1,6 +1,6 @@
-﻿using CFour.Entities.Base.Interfaces;
+﻿using CFour.Base.Interfaces;
 
-namespace CFour.Entities.Base;
+namespace CFour.Base;
 
 /// <summary>
 /// Represents a base class for entities that have an active state.

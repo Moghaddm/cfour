@@ -1,4 +1,4 @@
-﻿namespace CFour.Entities.Base.Interfaces;
+﻿namespace CFour.Base.Interfaces;
 
 /// <summary>
 /// Defines a base entity structure with a generic identifier.

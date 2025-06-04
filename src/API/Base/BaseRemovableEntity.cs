@@ -1,6 +1,6 @@
-﻿using CFour.Entities.Base.Interfaces;
+﻿using CFour.Base.Interfaces;
 
-namespace CFour.Entities.Base;
+namespace CFour.Base;
 
 /// <summary>
 /// Represents a base implementation of an entity that supports soft deletion.

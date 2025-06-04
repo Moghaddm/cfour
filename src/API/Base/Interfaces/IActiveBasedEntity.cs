@@ -1,4 +1,4 @@
-﻿namespace CFour.Entities.Base.Interfaces;
+﻿namespace CFour.Base.Interfaces;
 
 /// <summary>
 /// Represents an entity that has an active state indicator.

@@ -1,4 +1,4 @@
-﻿using CFour.Entities.Base;
+﻿using CFour.Base;
 using CFour.Entities.System;
 using CFour.Enums.Game;
 

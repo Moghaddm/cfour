@@ -1,6 +1,6 @@
-﻿using CFour.Entities.Base.Interfaces;
+﻿using CFour.Base.Interfaces;
 
-namespace CFour.Entities.Base;
+namespace CFour.Base;
 
 /// <summary>
 /// Represents an abstract base class for entities that are designed to be audited,

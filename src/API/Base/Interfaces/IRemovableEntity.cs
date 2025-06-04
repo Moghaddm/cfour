@@ -1,4 +1,4 @@
-﻿namespace CFour.Entities.Base.Interfaces;
+﻿namespace CFour.Base.Interfaces;
 
 /// <summary>
 /// Defines an interface for entities that support soft deletion functionality.

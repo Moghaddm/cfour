@@ -2,15 +2,12 @@
 
 namespace CFour.Extensions;
 
-/// <summary>
-/// IApplicationBuilder extensions for Swagger middlewares setup
-/// </summary>
 internal static class ApplicationExtensions
 {
     /// <summary>
-    /// application middleware for swagger
+    /// Configures and enables Swagger and Swagger UI middleware for the application.
     /// </summary>
-    /// <param name="app"></param>
+    /// <param name="app">The <see cref="IApplicationBuilder"/> instance used for configuring the application's middleware pipeline.</param>
     public static void UseCustomSwagger(this IApplicationBuilder app)
     {
         app.UseSwagger();
