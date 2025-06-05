@@ -3,4 +3,4 @@ using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public sealed class UserRepository(IMongoDatabase database) : Repository<long, User>(database), IUserRepository;
+public sealed class UserRepository(IMongoDatabase database) : Repository<string, User>(database), IUserRepository;

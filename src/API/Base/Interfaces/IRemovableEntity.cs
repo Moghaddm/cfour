@@ -35,4 +35,4 @@ public interface IRemovableEntity<TId> : IBaseEntity<TId>
 }
 
 /// <inheritdoc cref="IRemovableEntity{TId}"/>
-public interface IRemovableEntity : IRemovableEntity<long>;
+public interface IRemovableEntity : IRemovableEntity<string>;

@@ -11,28 +11,28 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
     private readonly IMongoCollection<TEntity> _collection =
         database.GetCollection<TEntity>(DocumentConstants.UserCollectionName);
 
-    /// <inheritdoc cref="IRepository{TId,TEntity}.InsertOneAsync"/>
-    public async Task InsertOneAsync(TEntity document, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.AddAsync"/>
+    public async Task AddAsync(TEntity document, CancellationToken cancellationToken)
     {
         await _collection.InsertOneAsync(document, cancellationToken: cancellationToken);
     }
 
-    /// <inheritdoc cref="IRepository{TId,TEntity}.DeleteOneAsync"/>
-    public async Task DeleteOneAsync(TId id, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.RemoveAsync"/>
+    public async Task RemoveAsync(TId id, CancellationToken cancellationToken)
     {
         var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
         await _collection.DeleteOneAsync(filter: filter, cancellationToken: cancellationToken);
     }
 
-    /// <inheritdoc cref="IRepository{TId,TEntity}.UpdateOneAsync"/>
-    public async Task UpdateOneAsync(TId id, TEntity newEntity, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.UpdateAsync"/>
+    public async Task UpdateAsync(TId id, TEntity newEntity, CancellationToken cancellationToken)
     {
         var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
         await _collection.ReplaceOneAsync(filter: filter, replacement: newEntity, cancellationToken: cancellationToken);
     }
 
-    /// <inheritdoc cref="IRepository{TId,TEntity}.GetOneAsync"/>
-    public async Task<TEntity> GetOneAsync(TId id, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IRepository{TId,TEntity}.GetAsync"/>
+    public async Task<TEntity> GetAsync(TId id, CancellationToken cancellationToken)
     {
         var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
         var document = await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken: cancellationToken);

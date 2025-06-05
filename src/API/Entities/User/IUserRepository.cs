@@ -1,5 +1,5 @@
-﻿namespace CFour.Entities.User;
+﻿using CFour.Base.Interfaces;
 
-public interface IUserRepository
-{
-}
+namespace CFour.Entities.User;
+
+public interface IUserRepository : IRepository<string, User>;

@@ -22,4 +22,4 @@ public interface IAuditedEntity<TId> : IRemovableEntity<TId>
 }
 
 /// <inheritdoc cref="IAuditedEntity{TId}"/>
-public interface IAuditedEntity : IAuditedEntity<long>;
+public interface IAuditedEntity : IAuditedEntity<string>;

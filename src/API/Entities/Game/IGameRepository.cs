@@ -1,6 +1,5 @@
-﻿namespace CFour.Entities.Game;
+﻿using CFour.Base.Interfaces;
 
-public interface IGameRepository
-{
-    
-}
+namespace CFour.Entities.Game;
+
+public interface IGameRepository : IRepository<string, Game>;

@@ -1,4 +1,7 @@
-﻿namespace CFour.Base.Interfaces;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace CFour.Base.Interfaces;
 
 /// <summary>
 /// Defines a base entity structure with a generic identifier.
@@ -20,4 +23,4 @@ public interface IBaseEntity<TId>
 }
 
 /// <inheritdoc cref="IBaseEntity{TId}"/>
-public interface IBaseEntity : IBaseEntity<long>;
+public interface IBaseEntity : IBaseEntity<string>;

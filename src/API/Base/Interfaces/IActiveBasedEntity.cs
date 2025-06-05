@@ -19,4 +19,4 @@ public interface IActiveBasedEntity<TId> : IBaseEntity<TId>
 }
 
 /// <inheritdoc cref="IActiveBasedEntity{TId}"/>
-public interface IActiveBasedEntity : IActiveBasedEntity<long>;
+public interface IActiveBasedEntity : IActiveBasedEntity<string>;

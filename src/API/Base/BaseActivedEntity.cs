@@ -1,4 +1,6 @@
 ﻿using CFour.Base.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace CFour.Base;
 
@@ -13,13 +15,18 @@ namespace CFour.Base;
 public abstract class ActiveBasedEntity<TId> : IActiveBasedEntity<TId>
 {
     /// <inheritdoc cref="IBaseEntity{TId}.Id" />
-    public required TId Id { get; init; }
+    public TId Id { get; init; } = default!;
 
     /// <inheritdoc cref="IBaseEntity{TId}.ConcurrencyStamp" />
-    public required string ConcurrencyStamp { get; set; }
+    public string ConcurrencyStamp { get; set; } = null!;
 
     /// <inheritdoc cref="IActiveBasedEntity{TId}.IsActive" />
-    public required bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 }
 
-public abstract class ActiveBasedEntity : ActiveBasedEntity<long>;
+public abstract class ActiveBasedEntity : ActiveBasedEntity<string>
+{
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    public new string Id { get; set; } = null!;
+}

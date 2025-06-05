@@ -1,4 +1,6 @@
 ﻿using CFour.Base.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace CFour.Base;
 
@@ -17,17 +19,22 @@ namespace CFour.Base;
 public abstract class BaseRemovableEntity<TId> : IRemovableEntity<TId>
 {
     /// <inheritdoc cref="IBaseEntity{TId}.Id" />
-    public required TId Id { get; init; }
+    public TId Id { get; init; } = default!;
 
     /// <inheritdoc cref="IBaseEntity{TId}.ConcurrencyStamp" />
-    public required string ConcurrencyStamp { get; set; }
+    public string ConcurrencyStamp { get; set; } = null!;
 
     /// <inheritdoc cref="IRemovableEntity.RemovedBy" />
-    public required long RemovedBy { get; set; }
+    public long RemovedBy { get; set; }
 
     /// <inheritdoc cref="IRemovableEntity.RemovedAt" />
-    public required DateTime? RemovedAt { get; set; }
+    public DateTime? RemovedAt { get; set; }
 }
 
 /// <inheritdoc cref="BaseRemovableEntity{TId}" />
-public abstract class BaseRemovableEntity : BaseAuditedEntity<long>;
+public abstract class BaseRemovableEntity : BaseAuditedEntity<string>
+{
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    public new string Id { get; set; } = null!;
+}
