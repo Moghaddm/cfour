@@ -1,4 +1,5 @@
-﻿using CFour.Entities.Game;
+﻿using CFour.Base;
+using CFour.Entities.Game;
 using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;

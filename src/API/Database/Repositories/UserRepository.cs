@@ -1,4 +1,5 @@
-﻿using CFour.Entities.User;
+﻿using CFour.Base;
+using CFour.Entities.User;
 using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;

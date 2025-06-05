@@ -20,18 +20,20 @@ public interface IRepository<in TId, TEntity>
     /// Asynchronously deletes a single document from the collection by its identifier.
     /// </summary>
     /// <param name="id">The identifier of the document to delete.</param>
+    /// <param name="removerUserId">The identifier of person who deleted this document.</param>
     /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous delete operation.</returns>
-    Task RemoveAsync(TId id, CancellationToken cancellationToken);
+    Task RemoveAsync(TId id, TId? removerUserId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Asynchronously updates a single document in the collection with a specified replacement entity.
     /// </summary>
     /// <param name="id">The identifier of the document to update.</param>
     /// <param name="newEntity">The new entity object that will replace the existing document.</param>
+    /// <param name="modifierUserId">The identifier of person who wants to update this document.</param>
     /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous update operation.</returns>
-    Task UpdateAsync(TId id, TEntity newEntity, CancellationToken cancellationToken);
+    Task UpdateAsync(TId id, TEntity newEntity, TId? modifierUserId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Asynchronously retrieves a single document from the collection by its identifier.

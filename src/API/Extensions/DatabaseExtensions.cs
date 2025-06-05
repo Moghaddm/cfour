@@ -1,6 +1,7 @@
 ﻿using CFour.Database.Repositories;
 using CFour.Database.Settings;
 using CFour.Entities.Game;
+using CFour.Entities.Match;
 using CFour.Entities.User;
 using MongoDB.Driver;
 
@@ -29,5 +30,6 @@ internal static class DatabaseExtensions
     {
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IGameRepository, GameRepository>();
+        services.AddTransient<IMatchRepository, MatchRepository>();
     }
 }
