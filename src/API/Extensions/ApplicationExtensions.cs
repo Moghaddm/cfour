@@ -4,7 +4,7 @@ namespace CFour.Extensions;
 
 internal static class ApplicationExtensions
 {
-    internal static void UseCustomSwagger(this IApplicationBuilder app)
+    internal static void EnableSwaggerAndSwaggerUi(this IApplicationBuilder app)
     {
         app.UseSwagger();
         app.UseSwaggerUI(options =>
