@@ -37,30 +37,33 @@ internal static class DataSeeder
             new List<string> { "Fantasy", "Open-World", "Exploration" },
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("Intel Core i5-2500K", 4, 4, "x64", 3.3, 2.2),
-                new Memory(8_000, 8_000, MemoryType.Ddr3, 1600),
-                new Storage(MainDrive.Hdd, 150_000_000, 20_000_000),
-                new Gpu("NVIDIA GeForce GTX 770", "Nvidia", 2, 1046, 1085, "11", true),
-                new OperationSystem(OsType.Windows, "Windows 10 Enterprise", 12, OsArchitecture.X64),
-                new Display(1080, 1920, DisplayTechnologyType.Led, 32)
+                new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.2),
+                new Memory(8_000, 8_000),
+                new Storage(150_000_000, StorageType.Hdd),
+                new Gpu("NVIDIA GeForce GTX 770", 2),
+                new OperationSystem(OsType.Windows, "Windows 10 Enterprise", OsArchitecture.X64),
+                new Display(1080, 1920, 32),
+                isLaptop: false
             ),
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("Intel Core i7-4770K", 4, 8, "x64", 3.5, 3.9),
-                new Memory(16_000, 16_000, MemoryType.Ddr4, 1600),
-                new Storage(MainDrive.Hdd, 150_000_000, 20_000_000),
-                new Gpu("NVIDIA GeForce GTX 770", "Nvidia", 2, 1046, 1085, "11", true),
-                new OperationSystem(OsType.Windows, "Windows 10 Enterprise", 12, OsArchitecture.X64),
-                new Display(1080, 1920, DisplayTechnologyType.Led, 32)
+                new Processor("AMD Ryzen 5 3600", 6, 12, 3.6, 4.2),
+                new Memory(16_000, 12_000),
+                new Storage(512_000_000, StorageType.Hdd),
+                new Gpu("NVIDIA GeForce GTX 1660 Super", 6),
+                new OperationSystem(OsType.Windows, "Windows 11 Pro", OsArchitecture.X64),
+                new Display(1440, 2560, 32),
+                isLaptop: false
             ),
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("Intel Core i5-2500K", 4, 4, "x64", 3.3, 2.2),
-                new Memory(8, 5, MemoryType.Ddr3, 1866),
-                new Storage(MainDrive.Hdd, 150_000_000, 20_000_000),
-                new Gpu("NVIDIA GeForce GTX 770", "Nvidia", 2, 1046, 1085, "11", true),
-                new OperationSystem(OsType.Windows, "Windows 10 Enterprise", 12, OsArchitecture.X64),
-                new Display(1080, 1920, DisplayTechnologyType.Led, 32)
+                new Processor("Intel Core i7-10750H", 6, 12, 2.6, 5.0),
+                new Memory(16_000, 8_000),
+                new Storage(1_000_000_000, StorageType.Sdd),
+                new Gpu("NVIDIA GeForce RTX 2060", 6),
+                new OperationSystem(OsType.Windows, "Windows 10 Home", OsArchitecture.X64),
+                new Display(1080, 1920, 24),
+                isLaptop: true
             )
         );
 

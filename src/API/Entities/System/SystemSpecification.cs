@@ -4,7 +4,7 @@
 /// Represents detailed information about the system's hardware and software components.
 /// Provides access to information such as processor, memory, storage, GPU, operating system, and display details.
 /// </summary>
-public struct SystemSpecification
+public record struct SystemSpecification
 {
     /// <summary>
     /// Represents the specifications of a system, including its hardware and software components.
@@ -16,7 +16,8 @@ public struct SystemSpecification
         Storage storage,
         Gpu gpu,
         OperationSystem operationSystem,
-        Display display
+        Display display,
+        bool isLaptop
     )
     {
         Unique = unique;
@@ -26,6 +27,7 @@ public struct SystemSpecification
         Gpu = gpu;
         OperationSystem = operationSystem;
         Display = display;
+        IsLaptop = isLaptop;
     }
 
     /// <summary>
@@ -73,4 +75,11 @@ public struct SystemSpecification
     /// This includes information such as resolution, technology type, and color depth.
     /// </summary>
     public Display Display { get; init; }
+
+    /// <summary>
+    /// Indicates whether the system is a laptop.
+    /// This property returns true if the device is identified as a laptop,
+    /// typically determined by factors such as form factor, built-in display, and integrated battery.
+    /// </summary>
+    public bool IsLaptop { get; init; }
 }
