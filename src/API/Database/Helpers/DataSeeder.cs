@@ -54,16 +54,6 @@ internal static class DataSeeder
                 new OperationSystem(OsType.Windows, "Windows 11 Pro", OsArchitecture.X64),
                 new Display(1440, 2560, 32),
                 isLaptop: false
-            ),
-            new SystemSpecification(
-                Guid.CreateVersion7(),
-                new Processor("Intel Core i7-10750H", 6, 12, 2.6, 5.0),
-                new Memory(16_000, 8_000),
-                new Storage(1_000_000_000, StorageType.Sdd),
-                new Gpu("NVIDIA GeForce RTX 2060", 6),
-                new OperationSystem(OsType.Windows, "Windows 10 Home", OsArchitecture.X64),
-                new Display(1080, 1920, 24),
-                isLaptop: true
             )
         );
 

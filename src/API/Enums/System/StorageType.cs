@@ -6,5 +6,5 @@
 public enum StorageType : byte
 {
     Hdd = 1,
-    Sdd = 2
+    Sdd = 2                                             
 }

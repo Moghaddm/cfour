@@ -16,7 +16,7 @@ public sealed class Game : ActiveBasedEntity
     public Game(string title, string description, List<string> photoIds, List<string> trailerIds, GameGenre genre,
         string developer, string publisher, DateTime releaseDate, string officialWebsite, double rating,
         IList<GamePlatform> availablePlatforms, IList<string> tags, SystemSpecification minimumRequirement,
-        SystemSpecification recommendedRequirement, SystemSpecification highRequirement)
+        SystemSpecification recommendedRequirement)
     {
         Id = Guid.CreateVersion7().ToString();
         ConcurrencyStamp = Guid.CreateVersion7().ToString();
@@ -34,7 +34,6 @@ public sealed class Game : ActiveBasedEntity
         Tags = tags;
         MinimumRequirement = minimumRequirement;
         RecommendedRequirement = recommendedRequirement;
-        HighRequirement = highRequirement;
     }
 
     /// <summary>
@@ -106,10 +105,4 @@ public sealed class Game : ActiveBasedEntity
     /// Gets or sets the recommended system specifications for running the game.
     /// </summary>
     public SystemSpecification RecommendedRequirement { get; private set; }
-
-    /// <summary>
-    /// Gets or sets the high system requirements for running the game.
-    /// This property provides detailed specifications, including processor, memory, GPU, and other hardware or software components required for optimal performance.
-    /// </summary>
-    public SystemSpecification HighRequirement { get; private set; }
 }

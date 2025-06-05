@@ -4,4 +4,10 @@ using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public sealed class GameRepository(IMongoDatabase database) : Repository<string, Game>(database), IGameRepository;
+public sealed class GameRepository(IMongoDatabase database) : Repository<string, Game>(database), IGameRepository
+{
+    public Task<Game> GetToMatchByIdAsync(string id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+}
