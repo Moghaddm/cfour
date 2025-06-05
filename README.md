@@ -1,52 +1,54 @@
-﻿# C Four
+# 🎮 CFour – Game Compatibility & Benchmark Intelligence
 
-## Overview
+**C4 (CFour)** is an intelligent benchmark and compatibility engine designed to help gamers evaluate whether their system can run specific games — and how well. It analyzes a user's hardware configuration and compares it against real-world game requirements to deliver clear, actionable results like expected FPS, playable quality settings, and performance bottlenecks.
 
-[Provide a brief overview of your project. Include what the project does, its primary purpose, and the audience it's intended for.]
+---
 
-## Features
+## 🕹️ Key Features
 
-- Detect System Information of Users
-- Consult About experiencing a Game
-- Suggest Hardware from Available Stores
+- ✅ **Game Compatibility Reports**  
+  Instantly check if your system can run a game like *Red Dead Redemption 2*, and at what performance level.
 
-## Technologies Used
+- 📊 **FPS Benchmark Estimates**  
+  Predict average, min, and max FPS across resolutions and presets (Low, Medium, High, Ultra).
 
-- **ASP.NET Core** - For building web applications
-- **C# 13.0** - Backend programming language
-- **Razor Pages** - For dynamic content rendering
-- **.NET 9.0** - Target framework
+- 🧠 **Hardware Analysis Engine**  
+  Detects CPU, GPU, RAM, VRAM, OS, and storage — compares them against minimum & recommended specs.
 
-## Getting Started
+- ⚙️ **Performance Bottleneck Detection**  
+  Identifies your system’s weak spots and recommends upgrades or settings to tweak.
 
-### Prerequisites
+- 🎮 **Game Profiles & Requirements Database**  
+  Centralized, structured data for hundreds of games including official and community benchmarks.
 
-1. Install .NET 9.0 SDK (https://dotnet.microsoft.com/download/dotnet)
-2. Use an IDE such as [JetBrains Rider](https://www.jetbrains.com/rider/) or Visual Studio 2022.
+---
 
-### Installation
+## 🏗️ Tech Stack
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Moghaddm/cfour.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd cfour
-   ```
-3. Restore dependencies:
-   ```bash
-   dotnet restore
-   ```
+- **Backend**: ASP.NET Core / C#
+- **Frontend**: React (planned)
+- **Database**: PostgreSQL / EF Core
+- **Deployment**: Docker-ready (soon)
 
-### Running the Application
+---
 
-1. Build the project:
-   ```bash
-   dotnet build
-   ```
-2. Run the application:
-   ```bash
-   dotnet run
-   ```
-3. Open your browser and navigate to `http://localhost:5232` (default URL).
+## 💡 Use Cases
+
+- Gamers wondering “Can I run this game?”
+- PC builders comparing performance
+- Game launchers and digital stores to embed system-check functionality
+- Tech support tools for gaming platforms
+
+---
+
+## 🚀 Roadmap
+
+- [ ] Public benchmark data importer  
+- [ ] Real-time FPS testing client (desktop)  
+- [ ] Game recommendation engine based on user specs  
+- [ ] Web UI for compatibility reporting  
+
+---
+
+## 📂 Repository Structure (Coming Soon)
+
