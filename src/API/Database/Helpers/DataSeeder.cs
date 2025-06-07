@@ -1,4 +1,5 @@
-﻿using CFour.Entities.Game;
+﻿using System.Runtime.CompilerServices;
+using CFour.Entities.Game;
 using CFour.Entities.System;
 using CFour.Enums.Game;
 using CFour.Enums.System;
@@ -14,49 +15,49 @@ internal static class DataSeeder
     /// <returns>A task representing the asynchronous operation of seeding data.</returns>
     internal static async Task SeedAsync(this WebApplication app)
     {
-        var gameRepository = app.Services.GetRequiredService<IGameRepository>();
+        var scope = app.Services.GetRequiredService<IServiceProvider>().CreateAsyncScope();
+        var gameRepository = scope.ServiceProvider.GetRequiredService<IGameRepository>();
 
         var game = new Game(
-            "Epic Adventure",
-            "An epic journey in a vast and dangerous fantasy world.",
+            "Red Dead Redemption 2",
+            "A story of outlaw Arthur Morgan and the Van der Linde gang, set in the dying days of the American frontier.",
             [],
             [],
-            GameGenre.Adventure,
-            "Adventure Studios",
-            "Fantasy Corp",
-            new DateTime(2024, 5, 15),
-            "https://epicadventure.example.com",
-            4.8,
+            GameGenre.Action,
+            "Rockstar Studios",
+            "Rockstar Games",
+            new DateTime(2018, 10, 26),
+            "https://www.rockstargames.com/reddeadredemption2/",
+            4.9,
             new List<GamePlatform>
             {
                 GamePlatform.Pc,
                 GamePlatform.Ps4,
-                GamePlatform.Ps5,
                 GamePlatform.XboxOne
             },
-            new List<string> { "Fantasy", "Open-World", "Exploration" },
+            new List<string> { "Western", "Open-World", "Story-Driven" },
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.2),
+                new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.5),
                 new Memory(8_000, 8_000),
                 new Storage(150_000_000, StorageType.Hdd),
                 new Gpu("NVIDIA GeForce GTX 770", 2),
-                new OperationSystem(OsType.Windows, "Windows 10 Enterprise", OsArchitecture.X64),
+                new OperationSystem(OsType.Windows, "Windows 7", OsArchitecture.X64),
                 new Display(1080, 1920, 32),
                 isLaptop: false
             ),
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("AMD Ryzen 5 3600", 6, 12, 3.6, 4.2),
-                new Memory(16_000, 12_000),
-                new Storage(512_000_000, StorageType.Hdd),
-                new Gpu("NVIDIA GeForce GTX 1660 Super", 6),
-                new OperationSystem(OsType.Windows, "Windows 11 Pro", OsArchitecture.X64),
+                new Processor("AMD Ryzen 5 1500X", 4, 8, 3.5, 3.7),
+                new Memory(12_000, 8_000),
+                new Storage(150_000_000, StorageType.Hdd),
+                new Gpu("NVIDIA GeForce GTX 1060", 6),
+                new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                 new Display(1440, 2560, 32),
                 isLaptop: false
             )
         );
 
-        await gameRepository.AddAsync(game, CancellationToken.None);
+        if (!gameRepository.GetQueryable().Any()) await gameRepository.AddAsync(game, CancellationToken.None);
     }
 }

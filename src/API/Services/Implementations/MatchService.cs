@@ -1,4 +1,5 @@
-﻿using CFour.Constants;
+﻿using System.Text.Json;
+using CFour.Constants;
 using CFour.DTOs.Match;
 using CFour.Entities.Game;
 using CFour.Entities.Match;
@@ -20,7 +21,7 @@ public sealed class MatchService(
 ) : IMatchService
 {
     /// <inheritdoc cref="IMatchService.MatchAsync"/>
-    public async Task<Guid> MatchAsync(MatchInDto inDto, CancellationToken cancellationToken)
+    public async Task<string> MatchAsync(MatchInDto inDto, CancellationToken cancellationToken)
     {
         var game = await gameRepository.GetToMatchByIdAsync(inDto.GameId, cancellationToken);
         var systemSpecification =
@@ -29,32 +30,35 @@ public sealed class MatchService(
 
         var prompt = GeneratePrompt(systemSpecification, game);
 
-        await aiClient.GetChatClient(AiConstants.ChatAiModel)
+        var response = await aiClient.GetChatClient(AiConstants.ChatAiModel)
             .CompleteChatAsync(prompt, cancellationToken: cancellationToken);
 
-        var report = new Report();
+        var reportMessage = response.Value.Content[0].Text;
+        var report = JsonSerializer.Deserialize<Report>(reportMessage);
         var match = new Match(inDto.UserId, inDto.SystemSpecificationUnique, inDto.GameId, report);
 
         await matchRepository.AddAsync(match, cancellationToken);
 
-        return default;
+        return match.Id;
     }
 
     private static List<ChatMessage> GeneratePrompt(SystemSpecification systemSpecification, Game game)
     {
         List<ChatMessage> promptMessages =
         [
-            new SystemChatMessage(AiConstants.MatchSystemPrompts),
-            new UserChatMessage(systemSpecification.ToPrompts(["User's machine specification is described below:"])),
-            new UserChatMessage(
+            new SystemChatMessage(AiConstants.BaseContextPrompt),
+            new SystemChatMessage(AiConstants.MatchSystemPersonaPrompts),
+            new AssistantChatMessage(
+                systemSpecification.ToPrompts(["User's machine specification is described below:"])),
+            new AssistantChatMessage(
                 $"The game for matching and compatibility is \"{game.Title}\" described as \"{game.Description}\""
             ),
-            new UserChatMessage(
+            new AssistantChatMessage(
                 game.MinimumRequirement.ToPrompts(["Below are the minimum requirements for the game:"])
             ),
-            new UserChatMessage(
+            new AssistantChatMessage(
                 game.RecommendedRequirement.ToPrompts(["Below are the recommended requirements for the game:"])
-            )
+            ),
         ];
 
         return promptMessages;

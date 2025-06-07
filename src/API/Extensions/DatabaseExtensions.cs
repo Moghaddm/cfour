@@ -1,4 +1,5 @@
-﻿using CFour.Database.Repositories;
+﻿using CFour.Database.Configuration;
+using CFour.Database.Repositories;
 using CFour.Database.Settings;
 using CFour.Entities.Game;
 using CFour.Entities.Match;
@@ -24,6 +25,8 @@ internal static class DatabaseExtensions
             var client = serviceProvider.GetRequiredService<IMongoClient>();
             return client.GetDatabase(mongoDbSettings.DatabaseName);
         });
+
+        GameConfiguration.RegisterMappings();
     }
 
     private static void ConfigureRepositories(this IServiceCollection services)

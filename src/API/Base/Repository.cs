@@ -8,8 +8,7 @@ namespace CFour.Base;
 public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId, TEntity>
     where TEntity : IBaseEntity<TId>
 {
-    private readonly IMongoCollection<TEntity> _collection =
-        database.GetCollection<TEntity>(DocumentConstants.UserCollectionName);
+    protected readonly IMongoCollection<TEntity> Collection = database.GetCollection<TEntity>(nameof(TEntity));
 
     /// <inheritdoc cref="IRepository{TId,TEntity}.AddAsync"/>
     public async Task AddAsync(TEntity document, CancellationToken cancellationToken)
@@ -20,7 +19,7 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
             auditedEntity.ModifiedBy = 0;
         }
 
-        await _collection.InsertOneAsync(document, cancellationToken: cancellationToken);
+        await Collection.InsertOneAsync(document, cancellationToken: cancellationToken);
     }
 
     /// <inheritdoc cref="IRepository{TId,TEntity}.RemoveAsync"/>
@@ -34,9 +33,9 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
                 .Set(nameof(IRemovableEntity<TId>.RemovedAt), DateTime.UtcNow)
                 .Set(nameof(IRemovableEntity<TId>.RemovedBy), removerUserId);
 
-            await _collection.UpdateOneAsync(filter: filter, update: update, cancellationToken: cancellationToken);
+            await Collection.UpdateOneAsync(filter: filter, update: update, cancellationToken: cancellationToken);
         }
-        else await _collection.DeleteOneAsync(filter: filter, cancellationToken: cancellationToken);
+        else await Collection.DeleteOneAsync(filter: filter, cancellationToken: cancellationToken);
     }
 
     /// <inheritdoc cref="IRepository{TId,TEntity}.UpdateAsync"/>
@@ -44,7 +43,7 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
     {
         var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
 
-        await _collection.ReplaceOneAsync(filter: filter, replacement: newEntity, cancellationToken: cancellationToken);
+        await Collection.ReplaceOneAsync(filter: filter, replacement: newEntity, cancellationToken: cancellationToken);
 
         if (typeof(IAuditedEntity<TId>).IsAssignableFrom(typeof(TEntity)))
         {
@@ -52,7 +51,7 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
                 .Set(nameof(IAuditedEntity<TId>.ModifiedAt), DateTime.UtcNow)
                 .Set(nameof(IAuditedEntity<TId>.ModifiedBy), modifierUserId);
 
-            await _collection.UpdateOneAsync(filter: filter, update: update, cancellationToken: cancellationToken);
+            await Collection.UpdateOneAsync(filter: filter, update: update, cancellationToken: cancellationToken);
         }
     }
 
@@ -61,12 +60,12 @@ public class Repository<TId, TEntity>(IMongoDatabase database) : IRepository<TId
     {
         var filter = Builders<TEntity>.Filter.Eq(p => p.Id, id);
 
-        return await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+        return await Collection.Find(filter).FirstOrDefaultAsync(cancellationToken: cancellationToken);
     }
 
     /// <inheritdoc cref="IRepository{TId,TEntity}.GetQueryable"/>
     public IQueryable<TEntity> GetQueryable()
     {
-        return _collection.AsQueryable();
+        return Collection.AsQueryable();
     }
 }

@@ -12,6 +12,6 @@ public interface IMatchService
     /// </summary>
     /// <param name="inDto">The input data transfer object containing match details including game ID, user ID, and system specifications.</param>
     /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
-    /// <returns>Returns a task that represents the asynchronous operation. The task result contains the GUID of the created or matched entity.</returns>
-    Task<Guid> MatchAsync(MatchInDto inDto, CancellationToken cancellationToken);
+    /// <returns>Returns a task that represents the asynchronous operation. The task result contains the GUID of the created or matched entity as string value.</returns>
+    Task<string> MatchAsync(MatchInDto inDto, CancellationToken cancellationToken);
 }

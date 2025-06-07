@@ -19,6 +19,7 @@ public sealed class Match : BaseRemovableEntity
     /// </remarks>
     public Match(string userId, string chosenSystemSpecificationUnique, string gameId, Report report)
     {
+        Id = Guid.CreateVersion7().ToString();
         UserId = userId;
         ChosenSystemSpecificationUnique = chosenSystemSpecificationUnique;
         GameId = gameId;

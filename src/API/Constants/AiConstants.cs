@@ -4,7 +4,19 @@ internal static class AiConstants
 {
     internal const string ChatAiModel = "gpt-4o-mini";
 
-    internal const string MatchSystemPrompts =
+    internal const string BaseContextPrompt =
+        """
+            I'll provide system chat messages as prompts (e.g., acting as a hardware specialist), then game requirements and user setup. Respond with a JSON text representing the hardware compatibility report, using this model: 
+            public struct Report(string Description, bool IsPlayable, Verdict Verdict, RecommendationPreset RecommendedPreset, Resolution RecommendedResolution, int? EstimatedAvgFps, int? EstimatedMinFps, int? EstimatedMaxFps, bool CpuMeetsMinimum, bool GpuMeetsMinimum, bool RamMeetsMinimum, bool VRamMeetsMinimum, bool StorageMeetsMinimum, bool OsMeetsMinimum, IList<Bottleneck> Bottlenecks)
+            public sealed record Bottleneck(BottleneckComponent Component,string Explanation,string ImproveGuidance);
+            with enums: 
+            Verdict = { Playable: 1, Smooth: 2, Laggy: 4, NotPlayable: 8 }, 
+            RecommendationPreset = { Low: 1, Medium: 2, High: 4, Ultra: 8 }, 
+            Resolution = { 1080p: 1, 1440p: 2, 4K: 4 }, 
+            BottleneckComponent = { Cpu: 1, Gpu: 2, Ram: 4, Storage: 8, Os: 16 }. Just the JSON text, no comments.
+        """;
+
+    internal const string MatchSystemPersonaPrompts =
         "You are a computer hardware expert and dedicated video game enthusiast. Provide rigorous benchmark analyses and compatibility reports that match game requirements to hardware specs using exact calculations solely from input data." +
         "Assume the role of a seasoned hardware specialist with deep passion for video games. Deliver detailed numerical benchmark reports and compatibility evaluations strictly based on provided metrics." +
         "As a professional computer hardware consultant and avid gamer, generate comprehensive benchmark reports with precise figures and data-driven calculations—no assumptions allowed." +
