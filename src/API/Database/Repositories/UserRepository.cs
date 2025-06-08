@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public sealed class UserRepository(IMongoDatabase database) : Repository<string, User>(database), IUserRepository
+public sealed class UserRepository(IMongoDatabase database) : Repository<User>(database), IUserRepository
 {
     public async Task<SystemSpecification> LoadUserMatchingSpecAsync(string id, string systemSpecUnique,
         CancellationToken cancellationToken)

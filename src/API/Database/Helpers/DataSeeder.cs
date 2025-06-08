@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using CFour.Entities.Game;
+﻿using CFour.Entities.Game;
 using CFour.Entities.System;
+using CFour.Entities.User;
 using CFour.Enums.Game;
 using CFour.Enums.System;
 
@@ -16,6 +16,42 @@ internal static class DataSeeder
     internal static async Task SeedAsync(this WebApplication app)
     {
         var scope = app.Services.GetRequiredService<IServiceProvider>().CreateAsyncScope();
+        await SeedUsersAsync(scope);
+        await SeedGamesAsync(scope);
+    }
+
+    private static async Task SeedUsersAsync(AsyncServiceScope scope)
+    {
+        var userRepository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
+
+        var user = new User(
+            Guid.CreateVersion7().ToString(),
+            Guid.CreateVersion7().ToString(),
+            "John",
+            "Doe",
+            "john.doe@example.com",
+            "1234567890",
+            1,
+            new List<SystemSpecification>
+            {
+                new(
+                    Guid.CreateVersion7(),
+                    new Processor("Intel Core i3-2100", 2, 4, 3.1, 2.5),
+                    new Memory(4_000, 4_000),
+                    new Storage(500_000_000, StorageType.Hdd),
+                    new Gpu("Intel HD Graphics 2000", 1),
+                    new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
+                    new Display(720, 1280, 24),
+                    isLaptop: true
+                )
+            }
+        );
+
+        if (!userRepository.GetQueryable().Any()) await userRepository.AddAsync(user, CancellationToken.None);
+    }
+
+    private static async Task SeedGamesAsync(AsyncServiceScope scope)
+    {
         var gameRepository = scope.ServiceProvider.GetRequiredService<IGameRepository>();
 
         var game = new Game(

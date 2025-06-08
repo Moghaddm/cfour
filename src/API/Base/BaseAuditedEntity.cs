@@ -1,6 +1,4 @@
 ﻿using CFour.Base.Interfaces;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace CFour.Base;
 
@@ -13,12 +11,12 @@ namespace CFour.Base;
 /// audit-related data, such as timestamps and user identifiers for modifications or removals.
 /// Implements <see cref="IBaseEntity"/> to include basic entity properties.
 /// </remarks>
-public abstract class BaseAuditedEntity<TId> : IAuditedEntity<TId>
+public abstract class BaseAuditedEntity : IAuditedEntity
 {
-    /// <inheritdoc cref="IBaseEntity{TId}.Id" />
-    public TId Id { get; init; } = default!;
+    /// <inheritdoc cref="IBaseEntity.Id" />
+    public string Id { get; init; } = default!;
 
-    /// <inheritdoc cref="IBaseEntity{TId}.ConcurrencyStamp" />
+    /// <inheritdoc cref="IBaseEntity.ConcurrencyStamp" />
     public string ConcurrencyStamp { get; set; } = null!;
 
     /// <inheritdoc cref="IRemovableEntity.RemovedBy" />
@@ -32,11 +30,4 @@ public abstract class BaseAuditedEntity<TId> : IAuditedEntity<TId>
 
     /// <inheritdoc cref="IAuditedEntity.ModifiedAt" />
     public DateTime ModifiedAt { get; set; }
-}
-
-public abstract class BaseAuditedEntity : BaseAuditedEntity<string>
-{
-    [BsonId]
-    [BsonRepresentation(BsonType.String)]
-    public new string Id { get; set; } = null!;
 }

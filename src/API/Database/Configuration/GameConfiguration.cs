@@ -1,18 +1,32 @@
-﻿using CFour.Base;
+﻿using CFour.Base.Interfaces;
+using CFour.Entities.Game;
 using MongoDB.Bson.Serialization;
 
 namespace CFour.Database.Configuration;
 
-public static class GameConfiguration
+public sealed class GameConfiguration : IMongoConfiguration
 {
-    public static void RegisterMappings()
+    public void Configure()
     {
-        BsonClassMap.RegisterClassMap<ActiveBasedEntity>(cm =>
+        BsonClassMap.RegisterClassMap<Game>(cm =>
         {
             cm.AutoMap();
-            cm.MapIdMember(c => c.Id)
-                .SetIsRequired(true);
-            cm.SetIgnoreExtraElements(true);
+            cm.MapCreator(game => new Game(
+                game.Title,
+                game.Description,
+                game.PhotoIds,
+                game.TrailerIds,
+                game.Genre,
+                game.Developer,
+                game.Publisher,
+                game.ReleaseDate,
+                game.OfficialWebsite,
+                game.Rating,
+                game.AvailablePlatforms,
+                game.Tags,
+                game.MinimumRequirement,
+                game.RecommendedRequirement)
+            );
         });
     }
 }

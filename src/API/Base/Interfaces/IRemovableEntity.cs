@@ -3,14 +3,11 @@
 /// <summary>
 /// Defines an interface for entities that support soft deletion functionality.
 /// </summary>
-/// <typeparam name="TId">
-/// The type of the identifier used for the entity.
-/// </typeparam>
 /// <remarks>
-/// Inherits from <see cref="IBaseEntity{TId}"/> and adds additional properties
+/// Inherits from <see cref="IBaseEntity"/> and adds additional properties
 /// to track information about when and by whom an entity was marked as removed.
 /// </remarks>
-public interface IRemovableEntity<TId> : IBaseEntity<TId>
+public interface IRemovableEntity : IBaseEntity
 {
     /// <summary>
     /// Represents the identifier of the user or entity responsible for removing the record.
@@ -33,6 +30,3 @@ public interface IRemovableEntity<TId> : IBaseEntity<TId>
     /// </remarks>
     DateTime? RemovedAt { get; set; }
 }
-
-/// <inheritdoc cref="IRemovableEntity{TId}"/>
-public interface IRemovableEntity : IRemovableEntity<string>;

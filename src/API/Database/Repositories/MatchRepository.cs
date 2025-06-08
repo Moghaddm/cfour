@@ -4,4 +4,4 @@ using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
-public sealed class MatchRepository(IMongoDatabase database) : Repository<string, Match>(database), IMatchRepository;
+public sealed class MatchRepository(IMongoDatabase database) : Repository<Match>(database), IMatchRepository;

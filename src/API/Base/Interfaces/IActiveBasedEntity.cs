@@ -1,12 +1,15 @@
 ﻿namespace CFour.Base.Interfaces;
 
 /// <summary>
-/// Represents an entity that has an active state indicator.
+/// Defines an entity that includes an active state property.
 /// </summary>
-/// <typeparam name="TId">
-/// The type of the unique identifier for the entity.
-/// </typeparam>
-public interface IActiveBasedEntity<TId> : IBaseEntity<TId>
+/// <remarks>
+/// This interface extends <see cref="IBaseEntity"/> by introducing the ability to
+/// determine whether the entity is active through the <c>IsActive</c> property.
+/// Useful in scenarios where entities need to be soft-enabled or disabled
+/// within a system without physical deletion.
+/// </remarks>
+public interface IActiveBasedEntity : IBaseEntity
 {
     /// <summary>
     /// Indicates whether the entity is active or inactive.
@@ -17,6 +20,3 @@ public interface IActiveBasedEntity<TId> : IBaseEntity<TId>
     /// </remarks>
     public bool IsActive { get; set; }
 }
-
-/// <inheritdoc cref="IActiveBasedEntity{TId}"/>
-public interface IActiveBasedEntity : IActiveBasedEntity<string>;

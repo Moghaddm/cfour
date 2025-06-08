@@ -34,6 +34,7 @@ public record struct SystemSpecification
     /// Gets or sets the globally unique identifier (GUID) for identifying the system's specification instance.
     /// This identifier ensures the uniqueness of each system specification object within a given context.
     /// </summary>
+    //[BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid Unique { get; init; }
 
     /// <summary>

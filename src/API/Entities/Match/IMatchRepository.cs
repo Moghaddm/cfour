@@ -2,4 +2,4 @@
 
 namespace CFour.Entities.Match;
 
-public interface IMatchRepository : IRepository<string, Match>;
+public interface IMatchRepository : IRepository<Match>;

@@ -2,7 +2,7 @@
 
 namespace CFour.Entities.Game;
 
-public interface IGameRepository : IRepository<string, Game>
+public interface IGameRepository : IRepository<Game>
 {
     /// <summary>
     /// Asynchronously retrieves a game entity that matches the given identifier.

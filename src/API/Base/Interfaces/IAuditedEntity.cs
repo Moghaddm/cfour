@@ -1,6 +1,6 @@
 ﻿namespace CFour.Base.Interfaces;
 
-public interface IAuditedEntity<TId> : IRemovableEntity<TId>
+public interface IAuditedEntity : IRemovableEntity
 {
     /// <summary>
     /// Gets or sets the identifier of the user who last modified the entity.
@@ -20,6 +20,3 @@ public interface IAuditedEntity<TId> : IRemovableEntity<TId>
     /// </remarks>
     DateTime ModifiedAt { get; set; }
 }
-
-/// <inheritdoc cref="IAuditedEntity{TId}"/>
-public interface IAuditedEntity : IAuditedEntity<string>;

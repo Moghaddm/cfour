@@ -4,9 +4,8 @@
 /// Provides a base interface for a repository pattern to perform CRUD operations
 /// on a specific data entity.
 /// </summary>
-/// <typeparam name="TId">The type of the identifier for the entity.</typeparam>
 /// <typeparam name="TEntity">The type of the entity managed by the repository.</typeparam>
-public interface IRepository<in TId, TEntity>
+public interface IRepository<TEntity>
 {
     /// <summary>
     /// Asynchronously inserts a single document into the collection.
@@ -23,7 +22,7 @@ public interface IRepository<in TId, TEntity>
     /// <param name="removerUserId">The identifier of person who deleted this document.</param>
     /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous delete operation.</returns>
-    Task RemoveAsync(TId id, TId? removerUserId, CancellationToken cancellationToken);
+    Task RemoveAsync(string id, string? removerUserId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Asynchronously updates a single document in the collection with a specified replacement entity.
@@ -33,7 +32,7 @@ public interface IRepository<in TId, TEntity>
     /// <param name="modifierUserId">The identifier of person who wants to update this document.</param>
     /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
     /// <returns>A task representing the asynchronous update operation.</returns>
-    Task UpdateAsync(TId id, TEntity newEntity, TId? modifierUserId, CancellationToken cancellationToken);
+    Task UpdateAsync(string id, TEntity newEntity, string? modifierUserId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Asynchronously retrieves a single document from the collection by its identifier.
@@ -41,7 +40,7 @@ public interface IRepository<in TId, TEntity>
     /// <param name="id">The identifier of the document to retrieve.</param>
     /// <param name="cancellationToken">The token that can be used to cancel the operation.</param>
     /// <returns>A task that represents the asynchronous retrieval operation. The task result contains the retrieved document, or null if not found.</returns>
-    Task<TEntity> GetAsync(TId id, CancellationToken cancellationToken);
+    Task<TEntity> GetAsync(string id, CancellationToken cancellationToken);
 
     /// <summary>
     /// Retrieves a queryable collection of entities managed by the repository.

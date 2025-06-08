@@ -21,6 +21,6 @@ public sealed class EndPoint : ICarterModule
                     var inDto = request.MapToDto();
                     await matchService.MatchAsync(inDto, cancellationToken);
                 })
-            .Validator<CreateMatchRequestValidator>();
+            .Validator<CreateMatchRequest>();
     }
 }
