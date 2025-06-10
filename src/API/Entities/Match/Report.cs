@@ -8,7 +8,7 @@ namespace CFour.Entities.Match;
 /// on whether the system meets the required specifications and offers details
 /// on estimated performance, bottlenecks, and recommendations.
 /// </summary>
-public struct Report(
+public record struct Report(
     string Description,
     bool IsPlayable,
     Verdict Verdict,

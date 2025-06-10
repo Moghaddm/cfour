@@ -54,6 +54,6 @@ internal static class SystemSpecificationHelpers
 
         prompts.AddRange(systemSpecificationPrompts);
 
-        return string.Join('\n', systemSpecificationPrompts);
+        return string.Join('\n', prompts);
     }
 }

@@ -1,11 +1,14 @@
 ﻿using CFour.Base;
 using CFour.Entities.Game;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace CFour.Database.Repositories;
 
+/// <inheritdoc cref="IGameRepository" /> 
 public sealed class GameRepository(IMongoDatabase database) : Repository<Game>(database), IGameRepository
 {
+    /// <inheritdoc cref="IGameRepository.GetToMatchByIdAsync" /> 
     public async Task<Game> GetToMatchByIdAsync(string id, CancellationToken cancellationToken)
     {
         var filter = Builders<Game>.Filter.Eq(g => g.Id, id);

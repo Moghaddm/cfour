@@ -5,18 +5,25 @@ using MongoDB.Driver;
 
 namespace CFour.Database.Repositories;
 
+/// <inheritdoc cref="IUserRepository" /> 
 public sealed class UserRepository(IMongoDatabase database) : Repository<User>(database), IUserRepository
 {
+    /// <inheritdoc cref="IUserRepository.LoadUserMatchingSpecAsync" /> 
     public async Task<SystemSpecification> LoadUserMatchingSpecAsync(string id, string systemSpecUnique,
         CancellationToken cancellationToken)
     {
-        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
-        var projection = Builders<User>.Projection.Include(u =>
-            u.SystemSpecifications.Where(x => x.Unique.ToString() == systemSpecUnique));
+        var filter = Builders<User>.Filter.And(
+            Builders<User>.Filter.Eq(u => u.Id, id),
+            Builders<User>.Filter.ElemMatch(u => u.SystemSpecifications,
+                ss => ss.Unique == Guid.Parse(systemSpecUnique))
+        );
 
-        var user =
-            await Collection.Find(filter).Project(projection).ToListAsync(cancellationToken);
+        var projection = Builders<User>.Projection.Expression(user =>
+            user.SystemSpecifications.FirstOrDefault(ss => ss.Unique == Guid.Parse(systemSpecUnique)));
 
-        throw new NotImplementedException();
+        var systemSpecification =
+            await Collection.Find(filter).Project(projection).FirstOrDefaultAsync(cancellationToken);
+
+        return systemSpecification;
     }
 }

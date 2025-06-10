@@ -8,7 +8,7 @@ internal static class CreateMatchRequestMapper
     {
         return new MatchInDto(
             request.GameId,
-            "", // TODO: AFTER AUTH FINISH THIS
+            "01975072-7f92-72e6-998a-7a66bcb46a90", // TODO: AFTER AUTH FINISH THIS
             request.ChosenSystemSpecificationUnique
         );
     }

@@ -14,6 +14,7 @@ internal static class AiConstants
             RecommendationPreset = { Low: 1, Medium: 2, High: 4, Ultra: 8 }, 
             Resolution = { 1080p: 1, 1440p: 2, 4K: 4 }, 
             BottleneckComponent = { Cpu: 1, Gpu: 2, Ram: 4, Storage: 8, Os: 16 }. Just the JSON text, no comments.
+            Please if you give me result dont user something like ```json content ``` or anything. just the json of of the model as text.
         """;
 
     internal const string MatchSystemPersonaPrompts =

@@ -34,6 +34,7 @@ public sealed class MatchService(
             .CompleteChatAsync(prompt, cancellationToken: cancellationToken);
 
         var reportMessage = response.Value.Content[0].Text;
+
         var report = JsonSerializer.Deserialize<Report>(reportMessage);
         var match = new Match(inDto.UserId, inDto.SystemSpecificationUnique, inDto.GameId, report);
 
@@ -44,21 +45,30 @@ public sealed class MatchService(
 
     private static List<ChatMessage> GeneratePrompt(SystemSpecification systemSpecification, Game game)
     {
+        var userSystemSpecification =
+            new AssistantChatMessage(
+                systemSpecification.ToPrompts(["User's machine specification is described below:"]));
+
+        var gameContent = new AssistantChatMessage(
+            $"The game for matching and compatibility is \"{game.Title}\" described as \"{game.Description}\""
+        );
+
+        var minimumRequirements = new AssistantChatMessage(
+            game.MinimumRequirement.ToPrompts(["Below are the minimum requirements for the game:"])
+        );
+
+        var recommendedRequirements = new AssistantChatMessage(
+            game.RecommendedRequirement.ToPrompts(["Below are the recommended requirements for the game:"])
+        );
+
         List<ChatMessage> promptMessages =
         [
             new SystemChatMessage(AiConstants.BaseContextPrompt),
             new SystemChatMessage(AiConstants.MatchSystemPersonaPrompts),
-            new AssistantChatMessage(
-                systemSpecification.ToPrompts(["User's machine specification is described below:"])),
-            new AssistantChatMessage(
-                $"The game for matching and compatibility is \"{game.Title}\" described as \"{game.Description}\""
-            ),
-            new AssistantChatMessage(
-                game.MinimumRequirement.ToPrompts(["Below are the minimum requirements for the game:"])
-            ),
-            new AssistantChatMessage(
-                game.RecommendedRequirement.ToPrompts(["Below are the recommended requirements for the game:"])
-            ),
+            userSystemSpecification,
+            gameContent,
+            minimumRequirements,
+            recommendedRequirements
         ];
 
         return promptMessages;
