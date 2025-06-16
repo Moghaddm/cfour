@@ -42,6 +42,7 @@ internal static class DataSeeder
                     [new Gpu("Intel HD Graphics 2000", 1, 1, 3.0, 3.0)],
                     new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                     new Display(720, 1280, 24),
+                    soundCard: null,
                     isLaptop: true
                 )
             }
@@ -83,6 +84,7 @@ internal static class DataSeeder
                 [new Gpu(" AMD HD 4870", 1, 1, 4.0, 4.0), new Gpu("NVIDIA 9800 ", 1, 1, 4.0, 4.0)],
                 new OperationSystem(OsType.Windows, "Windows 7", OsArchitecture.X64),
                 new Display(1080, 1920, 32),
+                "100% DirectX 10 compatible",
                 isLaptop: false
             ),
             new SystemSpecification(
@@ -96,6 +98,7 @@ internal static class DataSeeder
                 [new Gpu("NVIDIA GeForce GTX 1060", 2, 2, 5.0, 5.0), new Gpu("AMD HD 7870", 2, 2, 5.0, 5.0)],
                 new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                 new Display(1440, 2560, 32),
+                "100% DirectX 10 compatible",
                 isLaptop: false
             )
         );

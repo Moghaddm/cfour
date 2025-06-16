@@ -17,6 +17,7 @@ public record struct SystemSpecification
         IList<Gpu> gpus,
         OperationSystem operationSystem,
         Display display,
+        string? soundCard,
         bool isLaptop
     )
     {
@@ -27,6 +28,7 @@ public record struct SystemSpecification
         Gpus = gpus;
         OperationSystem = operationSystem;
         Display = display;
+        SoundCard = soundCard;
         IsLaptop = isLaptop;
     }
 
@@ -76,6 +78,13 @@ public record struct SystemSpecification
     /// This includes information such as resolution, technology type, and color depth.
     /// </summary>
     public Display Display { get; init; }
+
+    /// <summary>
+    /// Gets or sets the identifier or name of the sound card in the system.
+    /// This property provides details about the audio hardware installed, which can include
+    /// manufacturer and model information.
+    /// </summary>
+    public string? SoundCard { get; set; }
 
     /// <summary>
     /// Indicates whether the system is a laptop.
