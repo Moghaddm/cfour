@@ -105,4 +105,9 @@ public sealed class Game : ActiveBasedEntity
     /// Gets or sets the recommended system specifications for running the game.
     /// </summary>
     public SystemSpecification RecommendedRequirement { get; private set; }
+
+    /// <summary>
+    /// Gets or sets the sound card requirement for the game.
+    /// </summary>
+    public string SoundCard { get; set; }
 }

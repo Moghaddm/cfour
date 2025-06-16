@@ -11,20 +11,20 @@ public record struct SystemSpecification
     /// </summary>
     public SystemSpecification(
         Guid unique,
-        Processor processor,
+        IList<Processor> processors,
         Memory memory,
         Storage storage,
-        Gpu gpu,
+        IList<Gpu> gpus,
         OperationSystem operationSystem,
         Display display,
         bool isLaptop
     )
     {
         Unique = unique;
-        Processor = processor;
+        Processors = processors;
         Memory = memory;
         Storage = storage;
-        Gpu = gpu;
+        Gpus = gpus;
         OperationSystem = operationSystem;
         Display = display;
         IsLaptop = isLaptop;
@@ -42,7 +42,7 @@ public record struct SystemSpecification
     /// This includes details such as the CPU's name, core and thread count, architecture,
     /// base clock speed, and maximum clock speed.
     /// </summary>
-    public Processor Processor { get; init; }
+    public IList<Processor> Processors { get; init; }
 
     /// <summary>
     /// Gets or sets the memory details of the system.
@@ -63,7 +63,7 @@ public record struct SystemSpecification
     /// This includes details such as the GPU model, manufacturer, memory size, clock speeds,
     /// driver version, and support for features like ray tracing.
     /// </summary>
-    public Gpu Gpu { get; init; }
+    public IList<Gpu> Gpus { get; init; }
 
     /// <summary>
     /// Gets or sets the information about the operating system installed on the system.

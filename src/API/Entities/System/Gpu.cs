@@ -5,5 +5,8 @@
 /// </summary>
 public record struct Gpu(
     string Model,
-    double MemoryGb
+    float MemoryGb,
+    float DedicatedVideoRamGb,
+    double PixelShader,
+    double VertexShader
 );

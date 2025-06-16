@@ -36,10 +36,10 @@ internal static class DataSeeder
             {
                 new(
                     Guid.CreateVersion7(),
-                    new Processor("Intel Core i3-2100", 2, 4, 3.1, 2.5),
+                    [new Processor("Intel Core i3-2100", 2, 4, 3.1, 2.5)],
                     new Memory(4_000, 4_000),
                     new Storage(500_000_000, StorageType.Hdd),
-                    new Gpu("Intel HD Graphics 2000", 1),
+                    [new Gpu("Intel HD Graphics 2000", 1, 1, 3.0, 3.0)],
                     new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                     new Display(720, 1280, 24),
                     isLaptop: true
@@ -74,20 +74,26 @@ internal static class DataSeeder
             new List<string> { "Western", "Open-World", "Story-Driven" },
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.5),
+                [
+                    new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.5),
+                    new Processor("AMD Phenom 9850 Quad-Core Processor", 4, 8, 3.6, 3.6)
+                ],
                 new Memory(8_000, 8_000),
                 new Storage(150_000_000, StorageType.Hdd),
-                new Gpu("NVIDIA GeForce GTX 770", 2),
+                [new Gpu(" AMD HD 4870", 1, 1, 4.0, 4.0), new Gpu("NVIDIA 9800 ", 1, 1, 4.0, 4.0)],
                 new OperationSystem(OsType.Windows, "Windows 7", OsArchitecture.X64),
                 new Display(1080, 1920, 32),
                 isLaptop: false
             ),
             new SystemSpecification(
                 Guid.CreateVersion7(),
-                new Processor("AMD Ryzen 5 1500X", 4, 8, 3.5, 3.7),
+                [
+                    new Processor("AMD Ryzen 5 1500X", 4, 8, 3.5, 3.7),
+                    new Processor("Intel Core i7-6700HQ", 4, 8, 2.6, 3.1)
+                ],
                 new Memory(12_000, 8_000),
                 new Storage(150_000_000, StorageType.Hdd),
-                new Gpu("NVIDIA GeForce GTX 1060", 6),
+                [new Gpu("NVIDIA GeForce GTX 1060", 2, 2, 5.0, 5.0), new Gpu("AMD HD 7870", 2, 2, 5.0, 5.0)],
                 new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                 new Display(1440, 2560, 32),
                 isLaptop: false

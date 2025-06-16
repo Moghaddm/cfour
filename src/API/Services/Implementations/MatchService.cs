@@ -47,7 +47,7 @@ public sealed class MatchService(
     {
         var userSystemSpecification =
             new AssistantChatMessage(
-                systemSpecification.ToPrompts(["User's machine specification is described below:"]));
+                systemSpecification.ToPrompts(["User's machine specification is described below:"], true));
 
         var gameContent = new AssistantChatMessage(
             $"The game for matching and compatibility is \"{game.Title}\" described as \"{game.Description}\""
