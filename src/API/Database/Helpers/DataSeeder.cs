@@ -3,6 +3,7 @@ using CFour.Entities.System;
 using CFour.Entities.User;
 using CFour.Enums.Game;
 using CFour.Enums.System;
+using MongoDB.Driver.Linq;
 
 namespace CFour.Database.Helpers;
 
@@ -16,15 +17,19 @@ internal static class DataSeeder
     internal static async Task SeedAsync(this WebApplication app)
     {
         var scope = app.Services.GetRequiredService<IServiceProvider>().CreateAsyncScope();
-        await SeedUsersAsync(scope);
-        await SeedGamesAsync(scope);
+        var userId = await SeedUsersAsync(scope);
+        await SeedGamesAsync(scope, userId);
     }
 
-    private static async Task SeedUsersAsync(AsyncServiceScope scope)
+    private static async Task<string> SeedUsersAsync(AsyncServiceScope scope)
     {
         var userRepository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
 
-        var user = new User(
+        var user = await userRepository.GetQueryable().FirstOrDefaultAsync();
+
+        if (user is null) return user!.Id;
+
+        user = new User(
             Guid.CreateVersion7().ToString(),
             Guid.CreateVersion7().ToString(),
             "John",
@@ -47,11 +52,12 @@ internal static class DataSeeder
                 )
             }
         );
+        await userRepository.AddAsync(user, CancellationToken.None);
 
-        if (!userRepository.GetQueryable().Any()) await userRepository.AddAsync(user, CancellationToken.None);
+        return user.Id;
     }
 
-    private static async Task SeedGamesAsync(AsyncServiceScope scope)
+    private static async Task SeedGamesAsync(AsyncServiceScope scope, string userId)
     {
         var gameRepository = scope.ServiceProvider.GetRequiredService<IGameRepository>();
 
@@ -100,7 +106,8 @@ internal static class DataSeeder
                 new Display(1440, 2560, 32),
                 "100% DirectX 10 compatible",
                 isLaptop: false
-            )
+            ),
+            userId
         );
 
         if (!gameRepository.GetQueryable().Any()) await gameRepository.AddAsync(game, CancellationToken.None);

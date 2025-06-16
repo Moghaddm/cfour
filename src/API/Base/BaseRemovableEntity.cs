@@ -14,10 +14,16 @@ namespace CFour.Base;
 public abstract class BaseRemovableEntity : IRemovableEntity
 {
     /// <inheritdoc cref="IBaseEntity.Id" />
-    public string Id { get; init; } = default!;
+    public string Id { get; init; } = null!;
 
     /// <inheritdoc cref="IBaseEntity.ConcurrencyStamp" />
     public string ConcurrencyStamp { get; set; } = null!;
+
+    /// <inheritdoc cref="IBaseEntity.CreatorBy" />
+    public string CreatorBy { get; set; } = null!;
+
+    /// <inheritdoc cref="IBaseEntity.CreatedAt" />
+    public DateTime CreatedAt { get; set; }
 
     /// <inheritdoc cref="IRemovableEntity.RemovedBy" />
     public long RemovedBy { get; set; }

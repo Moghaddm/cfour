@@ -12,6 +12,7 @@ builder.Services.AddCarter();
 builder.Services.AddOpenApi();
 builder.Services.ConfigureAi(builder.Configuration);
 builder.Services.ConfigureServices();
+builder.Services.ConfigureMapper();
 
 var app = builder.Build();
 

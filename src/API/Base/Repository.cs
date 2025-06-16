@@ -14,6 +14,7 @@ public class Repository<TEntity>(IMongoDatabase database) : IRepository<TEntity>
     {
         if (document is BaseAuditedEntity auditedEntity)
         {
+            auditedEntity.CreatedAt = DateTime.UtcNow;
             auditedEntity.ModifiedAt = DateTime.UtcNow;
             auditedEntity.ModifiedBy = 0;
         }

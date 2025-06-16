@@ -1,4 +1,5 @@
 ﻿using CFour.Base;
+using CFour.Base.Interfaces;
 using CFour.Entities.System;
 using CFour.Enums.Game;
 
@@ -7,7 +8,7 @@ namespace CFour.Entities.Game;
 /// <summary>
 /// Represents a game with properties describing its details, media, and availability.
 /// </summary>
-public sealed class Game : ActiveBasedEntity
+public sealed class Game : ActiveBasedEntity, ICreatableEntity
 {
     /// <summary>
     /// Represents a game entity with detailed information, including title, description, genre,
@@ -16,7 +17,7 @@ public sealed class Game : ActiveBasedEntity
     public Game(string title, string description, List<string> photoIds, List<string> trailerIds, GameGenre genre,
         string developer, string publisher, DateTime releaseDate, string officialWebsite, double rating,
         IList<GamePlatform> availablePlatforms, IList<string> tags, SystemSpecification minimumRequirement,
-        SystemSpecification recommendedRequirement)
+        SystemSpecification recommendedRequirement, string creatorBy)
     {
         Id = Guid.CreateVersion7().ToString();
         ConcurrencyStamp = Guid.CreateVersion7().ToString();
@@ -34,6 +35,7 @@ public sealed class Game : ActiveBasedEntity
         Tags = tags;
         MinimumRequirement = minimumRequirement;
         RecommendedRequirement = recommendedRequirement;
+        CreatorBy = creatorBy;
     }
 
     /// <summary>
