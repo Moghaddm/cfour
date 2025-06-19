@@ -49,6 +49,11 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     public string Description { get; private set; }
 
     /// <summary>
+    /// Gets or sets the identifier for the avatar associated with the game.
+    /// </summary>
+    public string AvatarId { get; set; }
+
+    /// <summary>
     /// Gets or sets the list of photo IDs associated with the game.
     /// </summary>
     public List<string> PhotoIds { get; private set; }
@@ -107,4 +112,54 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     /// Gets or sets the recommended system specifications for running the game.
     /// </summary>
     public SystemSpecification RecommendedRequirement { get; private set; }
+
+    /// <summary>
+    /// Updates the properties of the game entity.
+    /// </summary>
+    /// <param name="title">The new title of the game.</param>
+    /// <param name="description">The new description of the game.</param>
+    /// <param name="photoIds">The new list of photo IDs.</param>
+    /// <param name="trailerIds">The new list of trailer IDs.</param>
+    /// <param name="genre">The new genre of the game.</param>
+    /// <param name="developer">The new developer name.</param>
+    /// <param name="publisher">The new publisher name.</param>
+    /// <param name="releaseDate">The new release date of the game.</param>
+    /// <param name="officialWebsite">The new official website of the game.</param>
+    /// <param name="rating">The new rating of the game.</param>
+    /// <param name="availablePlatforms">The new list of available platforms.</param>
+    /// <param name="tags">The new collection of tags.</param>
+    /// <param name="minimumRequirement">The new minimum system requirements.</param>
+    /// <param name="recommendedRequirement">The new recommended system requirements.</param>
+    public void Update(
+        string title,
+        string description,
+        List<string> photoIds,
+        List<string> trailerIds,
+        GameGenre genre,
+        string developer,
+        string publisher,
+        DateTime releaseDate,
+        string officialWebsite,
+        double rating,
+        IList<GamePlatform> availablePlatforms,
+        IList<string> tags,
+        SystemSpecification minimumRequirement,
+        SystemSpecification recommendedRequirement
+    )
+    {
+        Title = title;
+        Description = description;
+        PhotoIds = photoIds;
+        TrailerIds = trailerIds;
+        Genre = genre;
+        Developer = developer;
+        Publisher = publisher;
+        ReleaseDate = releaseDate;
+        OfficialWebsite = officialWebsite;
+        Rating = rating;
+        AvailablePlatforms = availablePlatforms;
+        Tags = tags;
+        MinimumRequirement = minimumRequirement;
+        RecommendedRequirement = recommendedRequirement;
+    }
 }

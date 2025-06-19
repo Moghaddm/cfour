@@ -10,9 +10,10 @@ internal static class ValidatorExtensions
     /// </summary>
     /// <param name="handlerBuilder">The route handler builder to which the validation filter is added.</param>
     /// <typeparam name="T">The type for which validation is performed. Must be a class.</typeparam>
-    internal static void Validator<T>(this RouteHandlerBuilder handlerBuilder) where T : class
+    internal static RouteHandlerBuilder Validator<T>(this RouteHandlerBuilder handlerBuilder) where T : class
     {
         handlerBuilder.AddEndpointFilter<EndPointValidationFilter<T>>();
+        return handlerBuilder;
     }
 
     internal static void ConfigureValidation(this IServiceCollection services)

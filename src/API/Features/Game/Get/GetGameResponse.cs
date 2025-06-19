@@ -1,9 +1,9 @@
 ﻿using CFour.Entities.System;
 using CFour.Enums.Game;
 
-namespace CFour.DTOs.Game;
+namespace CFour.Features.Game.Get;
 
-public record GameDto(
+public record GetGameResponse(
     string Title,
     string Description,
     List<string> PhotoIds,

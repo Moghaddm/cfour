@@ -1,9 +1,9 @@
 ﻿using CFour.Entities.System;
 using CFour.Enums.Game;
 
-namespace CFour.DTOs.Game;
+namespace CFour.Features.Game.Update;
 
-public record GameDto(
+public record UpdateGameRequest(
     string Title,
     string Description,
     List<string> PhotoIds,

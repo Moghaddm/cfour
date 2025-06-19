@@ -2,8 +2,10 @@
 using CFour.DTOs.Game;
 using CFour.Entities.Game;
 using CFour.Services.Interfaces;
+using MongoDB.Driver.Linq;
 
 namespace CFour.Services.Implementations;
+
 /// <inheritdoc cref="IGameService"/>
 public sealed class GameService(IGameRepository gameRepository, IMapper mapper) : IGameService
 {
@@ -21,20 +23,62 @@ public sealed class GameService(IGameRepository gameRepository, IMapper mapper) 
     }
 
     /// <inheritdoc cref="IGameService.UpdateAsync"/>
-    public Task UpdateAsync(string id, UpdateGameDto dto, CancellationToken cancellationToken)
+    public async Task UpdateAsync(string id, UpdateGameDto dto, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var game = await gameRepository.GetAsync(id, cancellationToken);
+        game.Update(
+            dto.Title,
+            dto.Description,
+            dto.PhotoIds,
+            dto.TrailerIds,
+            dto.Genre,
+            dto.Developer,
+            dto.Publisher,
+            dto.ReleaseDate,
+            dto.OfficialWebsite,
+            dto.Rating,
+            dto.AvailablePlatforms,
+            dto.Tags,
+            dto.MinimumRequirement,
+            dto.RecommendedRequirement
+        );
+        await gameRepository.UpdateAsync(id, game, dto.ModifierUserId, cancellationToken);
     }
 
     /// <inheritdoc cref="IGameService.GetAsync"/>
-    public Task<GameDto> GetAsync(string id, CancellationToken cancellationToken)
+    public async Task<GameDto> GetAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var game = await gameRepository.GetAsync(id, cancellationToken);
+
+        return new GameDto(
+            game.Title,
+            game.Description,
+            game.PhotoIds,
+            game.TrailerIds,
+            game.Genre,
+            game.Developer,
+            game.Publisher,
+            game.ReleaseDate,
+            game.OfficialWebsite,
+            game.Rating,
+            game.AvailablePlatforms,
+            game.Tags,
+            game.MinimumRequirement,
+            game.RecommendedRequirement
+        );
     }
 
     /// <inheritdoc cref="IGameService.GetAllAsync"/>
-    public Task<List<GamePreviewDto>> GetAllAsync(string? name, CancellationToken cancellationToken)
+    public async Task<List<GamePreviewDto>> GetAllAsync(string? name, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var games = gameRepository.GetQueryable();
+
+        if (name is not null) games = games.Where(g => g.Title.Contains(name));
+
+        var result = await games
+            .Select(g => new GamePreviewDto(g.Title, g.Description, g.AvatarId))
+            .ToListAsync(cancellationToken);
+
+        return result;
     }
 }
