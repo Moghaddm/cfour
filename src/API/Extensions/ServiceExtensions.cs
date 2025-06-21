@@ -1,5 +1,5 @@
-﻿using CFour.Services.Implementations;
-using CFour.Services.Interfaces;
+﻿using Application.Services.Implementations;
+using Application.Services.Interfaces;
 
 namespace CFour.Extensions;
 

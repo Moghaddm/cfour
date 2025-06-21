@@ -1,6 +1,6 @@
 using Carter;
-using CFour.Database.Helpers;
 using CFour.Extensions;
+using Infrastructure.Database.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 

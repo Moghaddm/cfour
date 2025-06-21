@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.SwaggerUI;
+﻿using Common.Constants;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace CFour.Extensions;
 
@@ -9,7 +10,7 @@ internal static class ApplicationExtensions
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
-            options.DocumentTitle = Constants.Constants.ApiDocumentationTitle;
+            options.DocumentTitle = Constants.ApiDocumentationTitle;
             options.DocExpansion(DocExpansion.None);
             options.DisplayRequestDuration();
             options.EnableDeepLinking();

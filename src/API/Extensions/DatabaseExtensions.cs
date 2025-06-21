@@ -1,10 +1,11 @@
 ﻿using System.Reflection;
-using CFour.Base.Interfaces;
-using CFour.Database.Repositories;
-using CFour.Database.Settings;
-using CFour.Entities.Game;
-using CFour.Entities.Match;
-using CFour.Entities.User;
+using Common.Base.Interfaces;
+using Common.Base.Interfaces.Infrastructure;
+using Domain.Entities.Game;
+using Domain.Entities.Match;
+using Domain.Entities.User;
+using Infrastructure.Database.Repositories;
+using Infrastructure.Database.Settings;
 using MongoDB.Driver;
 
 namespace CFour.Extensions;
@@ -21,7 +22,7 @@ internal static class DatabaseExtensions
     private static void SetupMongoDbClient(this IServiceCollection services, IConfigurationManager configuration)
     {
         var mongoDbSettings = configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>()!;
-        
+
         services.AddSingleton<IMongoClient>(_ => new MongoClient(mongoDbSettings.ConnectionString));
         services.AddScoped(serviceProvider =>
         {

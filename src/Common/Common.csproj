@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- VERSIONING -->
+        <PackageReference Include="Asp.Versioning.Http" Version="8.1.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0"/>
+        <PackageReference Include="AutoMapper" Version="14.0.0"/>
+        <!-- API - ENDPOINT -->
+        <PackageReference Include="Carter" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-rc.1.24452.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.4"/>
+        <!-- DB STORAGE -->
+        <PackageReference Include="MongoDB.Driver" Version="3.4.0"/>
+        <!-- AI -->
+        <PackageReference Include="OpenAI" Version="2.2.0-beta.4"/>
+        <!-- VALIDATION -->
+        <PackageReference Include="FluentValidation" Version="12.0.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0"/>
+    </ItemGroup>
+
+</Project>
