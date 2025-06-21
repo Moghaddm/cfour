@@ -1,6 +1,4 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Domain;
-using Common.Base.Interfaces;
+﻿using Common.Base.Abstracts.Domain;
 using Common.Base.Interfaces.Infrastructure;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;

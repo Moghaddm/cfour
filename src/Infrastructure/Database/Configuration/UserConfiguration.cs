@@ -1,5 +1,4 @@
-﻿using Common.Base.Interfaces;
-using Common.Base.Interfaces.Infrastructure;
+﻿using Common.Base.Interfaces.Infrastructure;
 using Domain.Entities.User;
 using MongoDB.Bson.Serialization;
 
