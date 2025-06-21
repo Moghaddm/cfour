@@ -50,6 +50,7 @@ ScaffoldingReadMe.txt
 # Rider settings
 .idea/
 *.sln.iml
+CFour.sln.DotSettings.user
 
 # Tye (for microservices orchestration)
 .tye/
