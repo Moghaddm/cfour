@@ -2,6 +2,7 @@
 using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Entities.Game;
+using Domain.Repositories;
 using MongoDB.Driver.Linq;
 
 namespace Application.Services.Implementations;

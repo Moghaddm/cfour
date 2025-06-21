@@ -2,6 +2,7 @@
 using Common.Base.Abstracts.Infrastructure;
 using Domain.Entities.System;
 using Domain.Entities.User;
+using Domain.Repositories;
 using MongoDB.Driver;
 
 namespace Infrastructure.Database.Repositories;

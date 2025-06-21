@@ -1,7 +1,7 @@
-﻿using Common.Base.Interfaces;
-using Common.Base.Interfaces.Infrastructure;
+﻿using Common.Base.Interfaces.Infrastructure;
+using Domain.Entities.Game;
 
-namespace Domain.Entities.Game;
+namespace Domain.Repositories;
 
 public interface IGameRepository : IRepository<Game>
 {

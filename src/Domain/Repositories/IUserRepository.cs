@@ -1,8 +1,8 @@
-﻿using Common.Base.Interfaces;
-using Common.Base.Interfaces.Infrastructure;
+﻿using Common.Base.Interfaces.Infrastructure;
 using Domain.Entities.System;
+using Domain.Entities.User;
 
-namespace Domain.Entities.User;
+namespace Domain.Repositories;
 
 public interface IUserRepository : IRepository<User>
 {

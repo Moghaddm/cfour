@@ -3,6 +3,7 @@ using Common.Enums.System;
 using Domain.Entities.Game;
 using Domain.Entities.System;
 using Domain.Entities.User;
+using Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver.Linq;

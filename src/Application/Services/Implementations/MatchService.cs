@@ -7,6 +7,7 @@ using Domain.Entities.Game;
 using Domain.Entities.Match;
 using Domain.Entities.System;
 using Domain.Entities.User;
+using Domain.Repositories;
 using OpenAI;
 using OpenAI.Chat;
 

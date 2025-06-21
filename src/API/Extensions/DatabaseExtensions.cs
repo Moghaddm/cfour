@@ -4,6 +4,7 @@ using Common.Base.Interfaces.Infrastructure;
 using Domain.Entities.Game;
 using Domain.Entities.Match;
 using Domain.Entities.User;
+using Domain.Repositories;
 using Infrastructure.Database.Repositories;
 using Infrastructure.Database.Settings;
 using MongoDB.Driver;
