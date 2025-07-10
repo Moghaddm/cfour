@@ -1,5 +1,4 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Infrastructure;
+﻿using Common.Base.Abstracts.Infrastructure;
 using Domain.Entities.Game;
 using Domain.Repositories;
 using MongoDB.Driver;
