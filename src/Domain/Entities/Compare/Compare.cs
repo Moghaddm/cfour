@@ -1,7 +1,6 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Domain;
+﻿using Common.Base.Abstracts.Domain;
 
-namespace Domain.Entities.Match;
+namespace Domain.Entities.Compare;
 
 /// <summary>
 /// Represents a match entity that contains details about a game match, including associated user, system specification, and game information.
@@ -10,7 +9,7 @@ namespace Domain.Entities.Match;
 /// Inherits from <see cref="BaseRemovableEntity"/> to include base entity features, auditing, and removal capabilities.
 /// Contains a list of associated <see cref="Chat"/> objects for managing messages related to the match.
 /// </remarks>
-public sealed class Match : BaseRemovableEntity
+public sealed class Compare : BaseRemovableEntity
 {
     /// <summary>
     /// Represents a match entity containing details about a game match, including associated user information, system specification, game details, and a compatibility report.
@@ -18,7 +17,7 @@ public sealed class Match : BaseRemovableEntity
     /// <remarks>
     /// The match entity is immutable except for the associated list of chats. It serves as a high-level aggregating object for linking users, a game's compatibility report, and system specifications.
     /// </remarks>
-    public Match(string userId, string chosenSystemSpecificationUnique, string gameId, Report report)
+    public Compare(string userId, string chosenSystemSpecificationUnique, string gameId, Report report)
     {
         Id = Guid.CreateVersion7().ToString();
         UserId = userId;
@@ -73,5 +72,5 @@ public sealed class Match : BaseRemovableEntity
     /// This property holds a list of <see cref="Chat"/> objects that represent the messages exchanged during the match.
     /// It allows for managing communication and interactions associated with the specific match.
     /// </remarks>
-    public IList<Chat> Chats { get; set; }
+    public ICollection<Chat> Chats { get; set; }
 }

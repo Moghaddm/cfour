@@ -1,6 +1,6 @@
 ﻿using Common.Enums.Match;
 
-namespace Domain.Entities.Match;
+namespace Domain.Entities.Compare;
 
 /// <summary>
 /// Represents a bottleneck component in a system and provides a description of the bottleneck condition.

@@ -1,24 +1,26 @@
-﻿namespace Domain.Entities.System;
+﻿using Domain.Entities.Game.Specification;
+using OperatingSystem = Domain.Entities.Game.Specification.OperatingSystem;
+
+namespace Domain.Entities.Game;
 
 /// <summary>
 /// Represents detailed information about the system's hardware and software components.
 /// Provides access to information such as processor, memory, storage, GPU, operating system, and display details.
 /// </summary>
-public record struct SystemSpecification
+public record struct GameSpecification
 {
     /// <summary>
     /// Represents the specifications of a system, including its hardware and software components.
     /// </summary>
-    public SystemSpecification(
+    public GameSpecification(
         Guid unique,
         IList<Processor> processors,
         Memory memory,
         Storage storage,
         IList<Gpu> gpus,
-        OperationSystem operationSystem,
+        OperatingSystem operatingSystem,
         Display display,
-        string? soundCard,
-        bool isLaptop
+        string? soundCard
     )
     {
         Unique = unique;
@@ -26,10 +28,9 @@ public record struct SystemSpecification
         Memory = memory;
         Storage = storage;
         Gpus = gpus;
-        OperationSystem = operationSystem;
+        OperatingSystem = operatingSystem;
         Display = display;
         SoundCard = soundCard;
-        IsLaptop = isLaptop;
     }
 
     /// <summary>
@@ -71,7 +72,7 @@ public record struct SystemSpecification
     /// Gets or sets the information about the operating system installed on the system.
     /// This includes details such as the operating system type, version, build number, and architecture.
     /// </summary>
-    public OperationSystem OperationSystem { get; init; }
+    public OperatingSystem OperatingSystem { get; init; }
 
     /// <summary>
     /// Gets or sets the details about the system's display configuration and properties.
@@ -84,12 +85,5 @@ public record struct SystemSpecification
     /// This property provides details about the audio hardware installed, which can include
     /// manufacturer and model information.
     /// </summary>
-    public string? SoundCard { get; set; }
-
-    /// <summary>
-    /// Indicates whether the system is a laptop.
-    /// This property returns true if the device is identified as a laptop,
-    /// typically determined by factors such as form factor, built-in display, and integrated battery.
-    /// </summary>
-    public bool IsLaptop { get; init; }
+    public string? SoundCard { get; init; }
 }

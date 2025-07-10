@@ -2,7 +2,6 @@
 using CFour.EndPoints.Game.Create;
 using CFour.EndPoints.Game.Get;
 using CFour.EndPoints.Game.Update;
-using CFour.Features.Game.Update;
 
 namespace CFour.EndPoints.Game.Common.Mappers;
 
@@ -20,8 +19,6 @@ public static class GameRequestMappers
             request.Publisher,
             request.ReleaseDate,
             request.OfficialWebsite,
-            request.Rating,
-            request.AvailablePlatforms,
             request.Tags,
             request.MinimumRequirement.MapToDto(),
             request.RecommendedRequirement.MapToDto(),
@@ -36,7 +33,7 @@ public static class GameRequestMappers
             request.Memory,
             request.Storage,
             request.Gpus,
-            request.OperationSystem,
+            request.OperatingSystem,
             request.Display,
             request.SoundCard,
             request.IsLaptop
@@ -55,8 +52,6 @@ public static class GameRequestMappers
             request.Publisher,
             request.ReleaseDate,
             request.OfficialWebsite,
-            request.Rating,
-            request.AvailablePlatforms,
             request.Tags,
             request.MinimumRequirement,
             request.RecommendedRequirement,
@@ -76,8 +71,6 @@ public static class GameRequestMappers
             gameDto.Publisher,
             gameDto.ReleaseDate,
             gameDto.OfficialWebsite,
-            gameDto.Rating,
-            gameDto.AvailablePlatforms,
             gameDto.Tags,
             gameDto.MinimumRequirement,
             gameDto.RecommendedRequirement

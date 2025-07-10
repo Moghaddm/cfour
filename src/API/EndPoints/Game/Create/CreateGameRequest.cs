@@ -1,5 +1,6 @@
 ﻿using Common.Enums.Game;
-using Domain.Entities.System;
+using Domain.Entities.Game.Specification;
+using OperatingSystem = Domain.Entities.Game.Specification.OperatingSystem;
 
 namespace CFour.EndPoints.Game.Create;
 
@@ -13,8 +14,6 @@ public record CreateGameRequest(
     string Publisher,
     DateTime ReleaseDate,
     string OfficialWebsite,
-    double Rating,
-    IList<GamePlatform> AvailablePlatforms,
     IList<string> Tags,
     CreateGameRequirementRequest MinimumRequirement,
     CreateGameRequirementRequest RecommendedRequirement
@@ -25,7 +24,7 @@ public record struct CreateGameRequirementRequest(
     Memory Memory,
     Storage Storage,
     IList<Gpu> Gpus,
-    OperationSystem OperationSystem,
+    OperatingSystem OperatingSystem,
     Display Display,
     string? SoundCard,
     bool IsLaptop

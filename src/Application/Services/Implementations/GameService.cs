@@ -37,8 +37,6 @@ public sealed class GameService(IGameRepository gameRepository, IMapper mapper) 
             dto.Publisher,
             dto.ReleaseDate,
             dto.OfficialWebsite,
-            dto.Rating,
-            dto.AvailablePlatforms,
             dto.Tags,
             dto.MinimumRequirement,
             dto.RecommendedRequirement
@@ -54,15 +52,13 @@ public sealed class GameService(IGameRepository gameRepository, IMapper mapper) 
         return new GameDto(
             game.Title,
             game.Description,
-            game.PhotoIds,
-            game.TrailerIds,
+            game.PhotoIds.ToList(),
+            game.TrailerIds.ToList(),
             game.Genre,
             game.Developer,
             game.Publisher,
             game.ReleaseDate,
             game.OfficialWebsite,
-            game.Rating,
-            game.AvailablePlatforms,
             game.Tags,
             game.MinimumRequirement,
             game.RecommendedRequirement

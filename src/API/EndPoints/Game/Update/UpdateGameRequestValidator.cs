@@ -1,7 +1,6 @@
-﻿using CFour.EndPoints.Game.Update;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace CFour.Features.Game.Update;
+namespace CFour.EndPoints.Game.Update;
 
 public class UpdateGameRequestValidator : AbstractValidator<UpdateGameRequest>
 {

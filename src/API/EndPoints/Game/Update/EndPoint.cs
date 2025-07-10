@@ -1,7 +1,6 @@
 ﻿using Application.Services.Interfaces;
 using Carter;
 using CFour.EndPoints.Game.Common.Mappers;
-using CFour.Features.Game.Update;
 using Common.Constants;
 using Microsoft.AspNetCore.Mvc;
 

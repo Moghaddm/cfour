@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.System;
+﻿namespace Domain.Entities.Game.Specification;
 
 /// <summary>
 /// Represents a GPU (Graphics Processing Unit) with its associated properties and specifications.

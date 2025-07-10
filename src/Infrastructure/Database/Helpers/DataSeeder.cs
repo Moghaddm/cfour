@@ -1,12 +1,13 @@
 ﻿using Common.Enums.Game;
 using Common.Enums.System;
 using Domain.Entities.Game;
-using Domain.Entities.System;
+using Domain.Entities.Game.Specification;
 using Domain.Entities.User;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver.Linq;
+using OperatingSystem = Domain.Entities.Game.Specification.OperatingSystem;
 
 namespace Infrastructure.Database.Helpers;
 
@@ -39,21 +40,7 @@ public static class DataSeeder
             "Doe",
             "john.doe@example.com",
             "1234567890",
-            1,
-            new List<SystemSpecification>
-            {
-                new(
-                    Guid.CreateVersion7(),
-                    [new Processor("Intel Core i3-2100", 2, 4, 3.1, 2.5)],
-                    new Memory(4_000, 4_000),
-                    new Storage(500_000_000, StorageType.Hdd),
-                    [new Gpu("Intel HD Graphics 2000", 1, 1, 3.0, 3.0)],
-                    new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
-                    new Display(720, 1280, 24),
-                    soundCard: null,
-                    isLaptop: true
-                )
-            }
+            ""
         );
         await userRepository.AddAsync(user, CancellationToken.None);
 
@@ -75,15 +62,8 @@ public static class DataSeeder
             "Rockstar Games",
             new DateTime(2018, 10, 26),
             "https://www.rockstargames.com/reddeadredemption2/",
-            4.9,
-            new List<GamePlatform>
-            {
-                GamePlatform.Pc,
-                GamePlatform.Ps4,
-                GamePlatform.XboxOne
-            },
             new List<string> { "Western", "Open-World", "Story-Driven" },
-            new SystemSpecification(
+            new GameSpecification(
                 Guid.CreateVersion7(),
                 [
                     new Processor("Intel Core i5-2500K", 4, 4, 3.3, 2.5),
@@ -92,12 +72,11 @@ public static class DataSeeder
                 new Memory(8_000, 8_000),
                 new Storage(150_000_000, StorageType.Hdd),
                 [new Gpu(" AMD HD 4870", 1, 1, 4.0, 4.0), new Gpu("NVIDIA 9800 ", 1, 1, 4.0, 4.0)],
-                new OperationSystem(OsType.Windows, "Windows 7", OsArchitecture.X64),
+                new OperatingSystem(OsType.Windows, "Windows 7", OsArchitecture.X64),
                 new Display(1080, 1920, 32),
-                "100% DirectX 10 compatible",
-                isLaptop: false
+                "100% DirectX 10 compatible"
             ),
-            new SystemSpecification(
+            new GameSpecification(
                 Guid.CreateVersion7(),
                 [
                     new Processor("AMD Ryzen 5 1500X", 4, 8, 3.5, 3.7),
@@ -106,10 +85,9 @@ public static class DataSeeder
                 new Memory(12_000, 8_000),
                 new Storage(150_000_000, StorageType.Hdd),
                 [new Gpu("NVIDIA GeForce GTX 1060", 2, 2, 5.0, 5.0), new Gpu("AMD HD 7870", 2, 2, 5.0, 5.0)],
-                new OperationSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
+                new OperatingSystem(OsType.Windows, "Windows 10", OsArchitecture.X64),
                 new Display(1440, 2560, 32),
-                "100% DirectX 10 compatible",
-                isLaptop: false
+                "100% DirectX 10 compatible"
             ),
             userId
         );

@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.System;
+﻿namespace Domain.Entities.Game.Specification;
 
 /// <summary>
 /// Represents a central processing unit (CPU) of a system with details about its specifications

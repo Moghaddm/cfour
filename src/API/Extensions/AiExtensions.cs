@@ -1,6 +1,6 @@
 ﻿using System.ClientModel;
 using System.ClientModel.Primitives;
-using CFour.Ai.Models;
+using CFour.Settings.Models;
 using OpenAI;
 
 namespace CFour.Extensions;

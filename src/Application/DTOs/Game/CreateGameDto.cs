@@ -12,8 +12,6 @@ public record CreateGameDto(
     string Publisher,
     DateTime ReleaseDate,
     string OfficialWebsite,
-    double Rating,
-    IList<GamePlatform> AvailablePlatforms,
     IList<string> Tags,
     CreateGameRequirementDto MinimumRequirement,
     CreateGameRequirementDto RecommendedRequirement,

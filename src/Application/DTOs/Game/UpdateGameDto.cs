@@ -1,5 +1,5 @@
 ﻿using Common.Enums.Game;
-using Domain.Entities.System;
+using Domain.Entities.Game;
 
 namespace Application.DTOs.Game;
 
@@ -13,10 +13,8 @@ public record UpdateGameDto(
     string Publisher,
     DateTime ReleaseDate,
     string OfficialWebsite,
-    double Rating,
-    IList<GamePlatform> AvailablePlatforms,
     IList<string> Tags,
-    SystemSpecification MinimumRequirement,
-    SystemSpecification RecommendedRequirement,
+    GameSpecification MinimumRequirement,
+    GameSpecification RecommendedRequirement,
     string ModifierUserId
 );

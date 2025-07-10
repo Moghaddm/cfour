@@ -2,10 +2,10 @@
 
 public static class FeatureConstants
 {
-    public static class Match
+    public static class Compare
     {
-        public const string EndpointTagName = "Match";
-        public const string Prefix = "/match";
+        public const string EndpointTagName = "Compare";
+        public const string Prefix = "/compare";
     }
 
     public static class Game

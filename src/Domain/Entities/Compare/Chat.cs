@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Match;
+﻿namespace Domain.Entities.Compare;
 
 /// <summary>
 /// Represents a chat entry containing the user's input, system-generated response, and the timestamp of the interaction.

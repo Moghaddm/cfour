@@ -1,6 +1,6 @@
 ﻿using Common.Base.Interfaces;
 using Common.Base.Interfaces.Infrastructure;
-using Domain.Entities.System;
+using Domain.Entities.Game;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -11,7 +11,7 @@ public sealed class SystemSpecificationConfiguration : IMongoConfiguration
 {
     public void Configure()
     {
-        BsonClassMap.RegisterClassMap<SystemSpecification>(cm =>
+        BsonClassMap.RegisterClassMap<GameSpecification>(cm =>
         {
             cm.AutoMap();
             cm.MapMember(ss => ss.Unique).SetSerializer(new GuidSerializer(GuidRepresentation.Standard));

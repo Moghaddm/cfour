@@ -1,13 +1,14 @@
-﻿using Domain.Entities.Game.Specification;
+using Domain.Entities.Game.Specification;
 using OperatingSystem = Domain.Entities.Game.Specification.OperatingSystem;
 
-namespace Application.DTOs.Game;
+namespace Domain.Entities.User;
 
-public record struct CreateGameRequirementDto(
-    IList<Processor> Processors,
+public record UserMachine(
+    string Unique,
+    Processor Processor,
     Memory Memory,
     Storage Storage,
-    IList<Gpu> Gpus,
+    Gpu Gpu,
     OperatingSystem OperatingSystem,
     Display Display,
     string? SoundCard,

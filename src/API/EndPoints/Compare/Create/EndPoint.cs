@@ -1,27 +1,26 @@
 ﻿using Application.Services.Interfaces;
 using Carter;
 using CFour.Extensions;
-using CFour.Features.Match.Create;
 using Common.Constants;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CFour.EndPoints.Match.Create;
+namespace CFour.EndPoints.Compare.Create;
 
 public sealed class EndPoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGroup(FeatureConstants.Match.Prefix).WithTags(FeatureConstants.Match.EndpointTagName)
+        app.MapGroup(FeatureConstants.Compare.Prefix).WithTags(FeatureConstants.Compare.EndpointTagName)
             .MapPost(string.Empty,
                 async (
-                    [FromBody] CreateMatchRequest request,
-                    IMatchService matchService,
+                    [FromBody] CreateCompareRequest request,
+                    ICompareService compareService,
                     CancellationToken cancellationToken
                 ) =>
                 {
                     var inDto = request.MapToDto();
-                    await matchService.MatchAsync(inDto, cancellationToken);
+                    await compareService.CompareAsync(inDto, cancellationToken);
                 })
-            .Validator<CreateMatchRequest>();
+            .Validator<CreateCompareRequest>();
     }
 }

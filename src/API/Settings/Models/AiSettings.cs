@@ -1,4 +1,4 @@
-﻿namespace CFour.Ai.Models;
+﻿namespace CFour.Settings.Models;
 
 /// <summary>
 /// Represents the configuration settings required for AI services.

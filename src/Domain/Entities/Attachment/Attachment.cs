@@ -1,5 +1,4 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Domain;
+﻿using Common.Base.Abstracts.Domain;
 
 namespace Domain.Entities.Attachment;
 

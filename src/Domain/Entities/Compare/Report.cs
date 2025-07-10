@@ -1,6 +1,6 @@
 ﻿using Common.Enums.Match;
 
-namespace Domain.Entities.Match;
+namespace Domain.Entities.Compare;
 
 /// <summary>
 /// Represents a compatibility report generated for evaluating the playability
@@ -23,5 +23,5 @@ public record struct Report(
     bool VRamMeetsMinimum,
     bool StorageMeetsMinimum,
     bool OsMeetsMinimum,
-    IList<Bottleneck> Bottlenecks
+    ICollection<Bottleneck> Bottlenecks
 );

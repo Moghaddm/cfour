@@ -9,8 +9,8 @@ namespace Infrastructure.Database.Repositories;
 /// <inheritdoc cref="IGameRepository" /> 
 public sealed class GameRepository(IMongoDatabase database) : Repository<Game>(database), IGameRepository
 {
-    /// <inheritdoc cref="IGameRepository.GetToMatchByIdAsync" /> 
-    public async Task<Game> GetToMatchByIdAsync(string id, CancellationToken cancellationToken)
+    /// <inheritdoc cref="IGameRepository.GetCompareDataByIdAsync" /> 
+    public async Task<Game> GetCompareDataByIdAsync(string id, CancellationToken cancellationToken)
     {
         var filter = Builders<Game>.Filter.Eq(g => g.Id, id);
 

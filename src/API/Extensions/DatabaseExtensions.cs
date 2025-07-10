@@ -2,7 +2,6 @@
 using Common.Base.Interfaces;
 using Common.Base.Interfaces.Infrastructure;
 using Domain.Entities.Game;
-using Domain.Entities.Match;
 using Domain.Entities.User;
 using Domain.Repositories;
 using Infrastructure.Database.Repositories;
@@ -49,6 +48,6 @@ internal static class DatabaseExtensions
     {
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IGameRepository, GameRepository>();
-        services.AddTransient<IMatchRepository, MatchRepository>();
+        services.AddTransient<ICompareRepository, CompareRepository>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Common.Enums.System;
 
-namespace Domain.Entities.System;
+namespace Domain.Entities.Game.Specification;
 
 /// <summary>
 /// Represents the storage subsystem of a system, providing information about

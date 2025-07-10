@@ -1,5 +1,5 @@
 ﻿using Common.Enums.Game;
-using Domain.Entities.System;
+using Domain.Entities.Game;
 
 namespace CFour.EndPoints.Game.Update;
 
@@ -13,9 +13,7 @@ public record UpdateGameRequest(
     string Publisher,
     DateTime ReleaseDate,
     string OfficialWebsite,
-    double Rating,
-    IList<GamePlatform> AvailablePlatforms,
     IList<string> Tags,
-    SystemSpecification MinimumRequirement,
-    SystemSpecification RecommendedRequirement
+    GameSpecification MinimumRequirement,
+    GameSpecification RecommendedRequirement
 );

@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace CFour.Features.Match.Create;
+namespace CFour.EndPoints.Compare.Create;
 
-public class CreateMatchRequestValidator : AbstractValidator<CreateMatchRequest>
+public class CreateCompareRequestValidator : AbstractValidator<CreateCompareRequest>
 {
-    public CreateMatchRequestValidator()
+    public CreateCompareRequestValidator()
     {
         RuleFor(m => m.GameId)
             .NotNull()

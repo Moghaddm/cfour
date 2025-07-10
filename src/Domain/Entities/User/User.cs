@@ -1,13 +1,11 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Domain;
-using Domain.Entities.System;
+﻿using Common.Base.Abstracts.Domain;
 
 namespace Domain.Entities.User;
 
 /// <summary>
 /// Represents a user in the system.
 /// This class is designed to encapsulate the essential
-/// user information including personal details and metadata
+/// user information, including personal details and metadata
 /// regarding the user's account creation and modification.
 /// </summary>
 public sealed class User : BaseAuditedEntity
@@ -22,7 +20,6 @@ public sealed class User : BaseAuditedEntity
     /// <param name="email">The email address of the user.</param>
     /// <param name="phoneNumber">The phone number of the user.</param>
     /// <param name="avatarAttachmentId">The unique identifier for the user's avatar attachment.</param>
-    /// <param name="systemSpecifications">The collection of system specifications associated with the user.</param>
     public User(
         string id,
         string concurrencyStamp,
@@ -30,8 +27,7 @@ public sealed class User : BaseAuditedEntity
         string lastName,
         string email,
         string phoneNumber,
-        long avatarAttachmentId,
-        IList<SystemSpecification> systemSpecifications
+        string avatarAttachmentId
     )
     {
         Id = id;
@@ -41,7 +37,7 @@ public sealed class User : BaseAuditedEntity
         Email = email;
         PhoneNumber = phoneNumber;
         AvatarAttachmentId = avatarAttachmentId;
-        SystemSpecifications = systemSpecifications;
+        Machines = [];
     }
 
     /// <summary>
@@ -76,12 +72,12 @@ public sealed class User : BaseAuditedEntity
     /// Gets or sets the unique identifier for the user's avatar attachment.
     /// This property is used to associate the user with an externally stored avatar image.
     /// </summary>
-    public long AvatarAttachmentId { get; private set; }
+    public string AvatarAttachmentId { get; private set; }
 
     /// <summary>
     /// Gets or sets the collection of system specifications associated with the user.
     /// This property provides detailed information about the user's hardware and software components,
     /// including processor, memory, storage, GPU, operating system, and display details.
     /// </summary>
-    public IList<SystemSpecification> SystemSpecifications { get; private set; }
+    public ICollection<UserMachine> Machines { get; private set; }
 }

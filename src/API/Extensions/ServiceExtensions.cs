@@ -12,6 +12,6 @@ internal static class ServiceExtensions
     /// <param name="services">An IServiceCollection instance to which services are added.</param>
     internal static void ConfigureServices(this IServiceCollection services)
     {
-        services.AddScoped<IMatchService, MatchService>();
+        services.AddScoped<ICompareService, CompareService>();
     }
 }

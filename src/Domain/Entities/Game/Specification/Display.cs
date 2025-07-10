@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.System;
+﻿namespace Domain.Entities.Game.Specification;
 
 /// <summary>
 /// Represents the display configuration and properties of a system.

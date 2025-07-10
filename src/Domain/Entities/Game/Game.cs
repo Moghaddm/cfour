@@ -1,9 +1,6 @@
-﻿using Common.Base;
-using Common.Base.Abstracts.Domain;
-using Common.Base.Interfaces;
+﻿using Common.Base.Abstracts.Domain;
 using Common.Base.Interfaces.Domain;
 using Common.Enums.Game;
-using Domain.Entities.System;
 
 namespace Domain.Entities.Game;
 
@@ -17,10 +14,9 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     /// developer, publisher, release date, platform availability, system requirements, and more.
     /// </summary>
     public Game(string title, string description, string avatarId, List<string> photoIds, List<string> trailerIds,
-        GameGenre genre,
-        string developer, string publisher, DateTime releaseDate, string officialWebsite, double rating,
-        IList<GamePlatform> availablePlatforms, IList<string> tags, SystemSpecification minimumRequirement,
-        SystemSpecification recommendedRequirement, string creatorBy)
+        GameGenre genre, string developer, string publisher, DateTime releaseDate, string officialWebsite,
+        IList<string> tags, GameSpecification minimumRequirement, GameSpecification recommendedRequirement,
+        string creatorBy)
     {
         Id = Guid.CreateVersion7().ToString();
         ConcurrencyStamp = Guid.CreateVersion7().ToString();
@@ -34,8 +30,6 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
         Publisher = publisher;
         ReleaseDate = releaseDate;
         OfficialWebsite = officialWebsite;
-        Rating = rating;
-        AvailablePlatforms = availablePlatforms;
         Tags = tags;
         MinimumRequirement = minimumRequirement;
         RecommendedRequirement = recommendedRequirement;
@@ -60,12 +54,12 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     /// <summary>
     /// Gets or sets the list of photo IDs associated with the game.
     /// </summary>
-    public List<string> PhotoIds { get; private set; }
+    public IList<string> PhotoIds { get; private set; }
 
     /// <summary>
     /// Gets or sets the collection of identifiers for the trailers associated with the game.
     /// </summary>
-    public List<string> TrailerIds { get; private set; }
+    public IList<string> TrailerIds { get; private set; }
 
     /// <summary>
     /// Gets or sets the genre of the game.
@@ -93,16 +87,6 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     public string OfficialWebsite { get; private set; }
 
     /// <summary>
-    /// Gets or sets the rating of the game.
-    /// </summary>
-    public double Rating { get; private set; }
-
-    /// <summary>
-    /// Gets or sets the list of platforms on which the game is available.
-    /// </summary>
-    public IList<GamePlatform> AvailablePlatforms { get; private set; }
-
-    /// <summary>
     /// Gets or sets the collection of tags associated with the game.
     /// </summary>
     public IList<string> Tags { get; private set; }
@@ -110,12 +94,12 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     /// <summary>
     /// Gets or sets the system specifications required to run the game at minimum settings.
     /// </summary>
-    public SystemSpecification MinimumRequirement { get; private set; }
+    public GameSpecification MinimumRequirement { get; private set; }
 
     /// <summary>
     /// Gets or sets the recommended system specifications for running the game.
     /// </summary>
-    public SystemSpecification RecommendedRequirement { get; private set; }
+    public GameSpecification RecommendedRequirement { get; private set; }
 
     /// <summary>
     /// Updates the properties of the game entity.
@@ -129,8 +113,6 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
     /// <param name="publisher">The new publisher name.</param>
     /// <param name="releaseDate">The new release date of the game.</param>
     /// <param name="officialWebsite">The new official website of the game.</param>
-    /// <param name="rating">The new rating of the game.</param>
-    /// <param name="availablePlatforms">The new list of available platforms.</param>
     /// <param name="tags">The new collection of tags.</param>
     /// <param name="minimumRequirement">The new minimum system requirements.</param>
     /// <param name="recommendedRequirement">The new recommended system requirements.</param>
@@ -144,11 +126,9 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
         string publisher,
         DateTime releaseDate,
         string officialWebsite,
-        double rating,
-        IList<GamePlatform> availablePlatforms,
         IList<string> tags,
-        SystemSpecification minimumRequirement,
-        SystemSpecification recommendedRequirement
+        GameSpecification minimumRequirement,
+        GameSpecification recommendedRequirement
     )
     {
         Title = title;
@@ -160,8 +140,6 @@ public sealed class Game : ActiveBasedEntity, ICreatableEntity
         Publisher = publisher;
         ReleaseDate = releaseDate;
         OfficialWebsite = officialWebsite;
-        Rating = rating;
-        AvailablePlatforms = availablePlatforms;
         Tags = tags;
         MinimumRequirement = minimumRequirement;
         RecommendedRequirement = recommendedRequirement;
